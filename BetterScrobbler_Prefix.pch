@@ -1,0 +1,10 @@
+//
+//	BetterScrobbler_prefix.pch
+//	BetterScrobbler
+//
+//	Copyright 2007 Denis Defreyne. All rights reserved.
+//
+
+#ifdef __OBJC__
+    #import <Cocoa/Cocoa.h>
+#endif
