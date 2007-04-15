@@ -1,6 +1,6 @@
 //
 //	BSTrackQueue.m
-//	BetterScrobbler
+//	ScrobScrob
 //
 //	Copyright 2007 Denis Defreyne. All rights reserved.
 //

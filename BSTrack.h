@@ -1,6 +1,6 @@
 //
 //  BSTrack.h
-//  BetterScrobbler
+//  ScrobScrob
 //
 //  Created by Denis Defreyne on 12/04/2007.
 //  Copyright 2007 __MyCompanyName__. All rights reserved.

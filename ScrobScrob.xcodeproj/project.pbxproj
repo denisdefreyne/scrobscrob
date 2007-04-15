@@ -31,9 +31,9 @@
 		29B97319FDCFA39411CA2CEA /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/MainMenu.nib; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
-		32CA4F630368D1EE00C91783 /* BetterScrobbler_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BetterScrobbler_Prefix.pch; sourceTree = "<group>"; };
+		32CA4F630368D1EE00C91783 /* ScrobScrob_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrobScrob_Prefix.pch; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		8D1107320486CEB800E47090 /* BetterScrobbler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BetterScrobbler.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D1107320486CEB800E47090 /* ScrobScrob.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScrobScrob.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC019E8C0BCE6E4B00C7915B /* BSApplicationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSApplicationController.h; sourceTree = "<group>"; };
 		EC019E8D0BCE6E4B00C7915B /* BSApplicationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSApplicationController.m; sourceTree = "<group>"; };
 		EC019ED60BCE77EF00C7915B /* BSTrackSubmitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSTrackSubmitter.h; sourceTree = "<group>"; };
@@ -107,12 +107,12 @@
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8D1107320486CEB800E47090 /* BetterScrobbler.app */,
+				8D1107320486CEB800E47090 /* ScrobScrob.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		29B97314FDCFA39411CA2CEA /* BetterScrobbler */ = {
+		29B97314FDCFA39411CA2CEA /* ScrobScrob */ = {
 			isa = PBXGroup;
 			children = (
 				080E96DDFE201D6D7F000001 /* Classes */,
@@ -121,13 +121,13 @@
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 			);
-			name = BetterScrobbler;
+			name = ScrobScrob;
 			sourceTree = "<group>";
 		};
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
-				32CA4F630368D1EE00C91783 /* BetterScrobbler_Prefix.pch */,
+				32CA4F630368D1EE00C91783 /* ScrobScrob_Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
 			);
 			name = "Other Sources";
@@ -180,9 +180,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		8D1107260486CEB800E47090 /* BetterScrobbler */ = {
+		8D1107260486CEB800E47090 /* ScrobScrob */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "BetterScrobbler" */;
+			buildConfigurationList = C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "ScrobScrob" */;
 			buildPhases = (
 				8D1107290486CEB800E47090 /* Resources */,
 				8D11072C0486CEB800E47090 /* Sources */,
@@ -192,10 +192,10 @@
 			);
 			dependencies = (
 			);
-			name = BetterScrobbler;
+			name = ScrobScrob;
 			productInstallPath = "$(HOME)/Applications";
-			productName = BetterScrobbler;
-			productReference = 8D1107320486CEB800E47090 /* BetterScrobbler.app */;
+			productName = ScrobScrob;
+			productReference = 8D1107320486CEB800E47090 /* ScrobScrob.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -203,12 +203,12 @@
 /* Begin PBXProject section */
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
-			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "BetterScrobbler" */;
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "ScrobScrob" */;
 			hasScannedForEncodings = 1;
-			mainGroup = 29B97314FDCFA39411CA2CEA /* BetterScrobbler */;
+			mainGroup = 29B97314FDCFA39411CA2CEA /* ScrobScrob */;
 			projectDirPath = "";
 			targets = (
-				8D1107260486CEB800E47090 /* BetterScrobbler */,
+				8D1107260486CEB800E47090 /* ScrobScrob */,
 			);
 		};
 /* End PBXProject section */
@@ -277,7 +277,7 @@
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				OTHER_LDFLAGS = "-lcrypto";
-				PRODUCT_NAME = BetterScrobbler;
+				PRODUCT_NAME = ScrobScrob;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -294,7 +294,7 @@
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				OTHER_LDFLAGS = "-lcrypto";
-				PRODUCT_NAME = BetterScrobbler;
+				PRODUCT_NAME = ScrobScrob;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -322,7 +322,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "BetterScrobbler" */ = {
+		C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "ScrobScrob" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C01FCF4B08A954540054247B /* Debug */,
@@ -331,7 +331,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "BetterScrobbler" */ = {
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "ScrobScrob" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C01FCF4F08A954540054247B /* Debug */,

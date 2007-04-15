@@ -1,6 +1,6 @@
 //
 //	BSRemote.h
-//	BetterScrobbler
+//	ScrobScrob
 //
 //	Created by Denis Defreyne on 12/04/2007.
 //
