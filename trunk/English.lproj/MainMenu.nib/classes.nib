@@ -1,0 +1,13 @@
+{
+    IBClasses = (
+        {
+            ACTIONS = {login = id; playNext = id; playOrPause = id; playPrev = id; }; 
+            CLASS = BSApplicationController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {mPasswordField = NSSecureTextField; mUsernameField = NSTextField; }; 
+            SUPERCLASS = NSObject; 
+        }, 
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }
+    ); 
+    IBVersion = 1; 
+}

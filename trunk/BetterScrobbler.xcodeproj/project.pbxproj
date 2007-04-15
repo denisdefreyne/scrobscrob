@@ -1,0 +1,346 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 42;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		8D11072A0486CEB800E47090 /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 29B97318FDCFA39411CA2CEA /* MainMenu.nib */; };
+		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
+		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
+		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+		EC019E8E0BCE6E4B00C7915B /* BSApplicationController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC019E8D0BCE6E4B00C7915B /* BSApplicationController.m */; };
+		EC019ED80BCE77EF00C7915B /* BSTrackSubmitter.m in Sources */ = {isa = PBXBuildFile; fileRef = EC019ED70BCE77EF00C7915B /* BSTrackSubmitter.m */; };
+		EC019EE30BCE78C700C7915B /* BSITunesTrackListener.m in Sources */ = {isa = PBXBuildFile; fileRef = EC019EE20BCE78C700C7915B /* BSITunesTrackListener.m */; };
+		EC019F250BCE7DF000C7915B /* BSTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = EC019F240BCE7DF000C7915B /* BSTrack.m */; };
+		EC019FBA0BCE85AC00C7915B /* BSTrackFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = EC019FB90BCE85AC00C7915B /* BSTrackFilter.m */; };
+		EC01A09C0BCEB47600C7915B /* NSTimer+Pausing.m in Sources */ = {isa = PBXBuildFile; fileRef = EC01A09B0BCEB47600C7915B /* NSTimer+Pausing.m */; };
+		EC01A1AB0BCED19300C7915B /* BSRemote.m in Sources */ = {isa = PBXBuildFile; fileRef = EC01A1AA0BCED19300C7915B /* BSRemote.m */; };
+		EC8D7FF90BCFA2DA00DC50B8 /* BSTrackListener.m in Sources */ = {isa = PBXBuildFile; fileRef = EC8D7FF80BCFA2DA00DC50B8 /* BSTrackListener.m */; };
+		EC8D807B0BCFA98500DC50B8 /* BSTrackQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = EC8D807A0BCFA98500DC50B8 /* BSTrackQueue.m */; };
+		EC8D81DF0BCFD10200DC50B8 /* CocoaCryptoHashing.m in Sources */ = {isa = PBXBuildFile; fileRef = EC8D81DE0BCFD10200DC50B8 /* CocoaCryptoHashing.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
+		13E42FB307B3F0F600E4EEF1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
+		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		29B97319FDCFA39411CA2CEA /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/MainMenu.nib; sourceTree = "<group>"; };
+		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
+		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		32CA4F630368D1EE00C91783 /* BetterScrobbler_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BetterScrobbler_Prefix.pch; sourceTree = "<group>"; };
+		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		8D1107320486CEB800E47090 /* BetterScrobbler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BetterScrobbler.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EC019E8C0BCE6E4B00C7915B /* BSApplicationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSApplicationController.h; sourceTree = "<group>"; };
+		EC019E8D0BCE6E4B00C7915B /* BSApplicationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSApplicationController.m; sourceTree = "<group>"; };
+		EC019ED60BCE77EF00C7915B /* BSTrackSubmitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSTrackSubmitter.h; sourceTree = "<group>"; };
+		EC019ED70BCE77EF00C7915B /* BSTrackSubmitter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSTrackSubmitter.m; sourceTree = "<group>"; };
+		EC019EE10BCE78C700C7915B /* BSITunesTrackListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSITunesTrackListener.h; sourceTree = "<group>"; };
+		EC019EE20BCE78C700C7915B /* BSITunesTrackListener.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSITunesTrackListener.m; sourceTree = "<group>"; };
+		EC019F230BCE7DF000C7915B /* BSTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSTrack.h; sourceTree = "<group>"; };
+		EC019F240BCE7DF000C7915B /* BSTrack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSTrack.m; sourceTree = "<group>"; };
+		EC019FB80BCE85AC00C7915B /* BSTrackFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSTrackFilter.h; sourceTree = "<group>"; };
+		EC019FB90BCE85AC00C7915B /* BSTrackFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSTrackFilter.m; sourceTree = "<group>"; };
+		EC01A09A0BCEB47600C7915B /* NSTimer+Pausing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTimer+Pausing.h"; sourceTree = "<group>"; };
+		EC01A09B0BCEB47600C7915B /* NSTimer+Pausing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+Pausing.m"; sourceTree = "<group>"; };
+		EC01A1A90BCED19300C7915B /* BSRemote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSRemote.h; sourceTree = "<group>"; };
+		EC01A1AA0BCED19300C7915B /* BSRemote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSRemote.m; sourceTree = "<group>"; };
+		EC8D7FF70BCFA2DA00DC50B8 /* BSTrackListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSTrackListener.h; sourceTree = "<group>"; };
+		EC8D7FF80BCFA2DA00DC50B8 /* BSTrackListener.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSTrackListener.m; sourceTree = "<group>"; };
+		EC8D80790BCFA98500DC50B8 /* BSTrackQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSTrackQueue.h; sourceTree = "<group>"; };
+		EC8D807A0BCFA98500DC50B8 /* BSTrackQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSTrackQueue.m; sourceTree = "<group>"; };
+		EC8D81DD0BCFD10200DC50B8 /* CocoaCryptoHashing.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = CocoaCryptoHashing.h; sourceTree = "<group>"; };
+		EC8D81DE0BCFD10200DC50B8 /* CocoaCryptoHashing.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = CocoaCryptoHashing.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8D11072E0486CEB800E47090 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		080E96DDFE201D6D7F000001 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				EC01A0010BCE8A3500C7915B /* Processing */,
+				EC019E8C0BCE6E4B00C7915B /* BSApplicationController.h */,
+				EC019E8D0BCE6E4B00C7915B /* BSApplicationController.m */,
+				EC019F230BCE7DF000C7915B /* BSTrack.h */,
+				EC019F240BCE7DF000C7915B /* BSTrack.m */,
+				EC01A1A90BCED19300C7915B /* BSRemote.h */,
+				EC01A1AA0BCED19300C7915B /* BSRemote.m */,
+				EC01A09A0BCEB47600C7915B /* NSTimer+Pausing.h */,
+				EC01A09B0BCEB47600C7915B /* NSTimer+Pausing.m */,
+				EC8D81DD0BCFD10200DC50B8 /* CocoaCryptoHashing.h */,
+				EC8D81DE0BCFD10200DC50B8 /* CocoaCryptoHashing.m */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
+			);
+			name = "Linked Frameworks";
+			sourceTree = "<group>";
+		};
+		1058C7A2FEA54F0111CA2CBB /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				29B97324FDCFA39411CA2CEA /* AppKit.framework */,
+				13E42FB307B3F0F600E4EEF1 /* CoreData.framework */,
+				29B97325FDCFA39411CA2CEA /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		19C28FACFE9D520D11CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8D1107320486CEB800E47090 /* BetterScrobbler.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		29B97314FDCFA39411CA2CEA /* BetterScrobbler */ = {
+			isa = PBXGroup;
+			children = (
+				080E96DDFE201D6D7F000001 /* Classes */,
+				29B97315FDCFA39411CA2CEA /* Other Sources */,
+				29B97317FDCFA39411CA2CEA /* Resources */,
+				29B97323FDCFA39411CA2CEA /* Frameworks */,
+				19C28FACFE9D520D11CA2CBB /* Products */,
+			);
+			name = BetterScrobbler;
+			sourceTree = "<group>";
+		};
+		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				32CA4F630368D1EE00C91783 /* BetterScrobbler_Prefix.pch */,
+				29B97316FDCFA39411CA2CEA /* main.m */,
+			);
+			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		29B97317FDCFA39411CA2CEA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				8D1107310486CEB800E47090 /* Info.plist */,
+				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
+				29B97318FDCFA39411CA2CEA /* MainMenu.nib */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */,
+				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EC01A0010BCE8A3500C7915B /* Processing */ = {
+			isa = PBXGroup;
+			children = (
+				EC8D7FF70BCFA2DA00DC50B8 /* BSTrackListener.h */,
+				EC8D7FF80BCFA2DA00DC50B8 /* BSTrackListener.m */,
+				EC8D7FFA0BCFA2E000DC50B8 /* Listeners */,
+				EC019FB80BCE85AC00C7915B /* BSTrackFilter.h */,
+				EC019FB90BCE85AC00C7915B /* BSTrackFilter.m */,
+				EC8D80790BCFA98500DC50B8 /* BSTrackQueue.h */,
+				EC8D807A0BCFA98500DC50B8 /* BSTrackQueue.m */,
+				EC019ED60BCE77EF00C7915B /* BSTrackSubmitter.h */,
+				EC019ED70BCE77EF00C7915B /* BSTrackSubmitter.m */,
+			);
+			name = Processing;
+			sourceTree = "<group>";
+		};
+		EC8D7FFA0BCFA2E000DC50B8 /* Listeners */ = {
+			isa = PBXGroup;
+			children = (
+				EC019EE10BCE78C700C7915B /* BSITunesTrackListener.h */,
+				EC019EE20BCE78C700C7915B /* BSITunesTrackListener.m */,
+			);
+			name = Listeners;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8D1107260486CEB800E47090 /* BetterScrobbler */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "BetterScrobbler" */;
+			buildPhases = (
+				8D1107290486CEB800E47090 /* Resources */,
+				8D11072C0486CEB800E47090 /* Sources */,
+				8D11072E0486CEB800E47090 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BetterScrobbler;
+			productInstallPath = "$(HOME)/Applications";
+			productName = BetterScrobbler;
+			productReference = 8D1107320486CEB800E47090 /* BetterScrobbler.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		29B97313FDCFA39411CA2CEA /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "BetterScrobbler" */;
+			hasScannedForEncodings = 1;
+			mainGroup = 29B97314FDCFA39411CA2CEA /* BetterScrobbler */;
+			projectDirPath = "";
+			targets = (
+				8D1107260486CEB800E47090 /* BetterScrobbler */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8D1107290486CEB800E47090 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D11072A0486CEB800E47090 /* MainMenu.nib in Resources */,
+				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8D11072C0486CEB800E47090 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D11072D0486CEB800E47090 /* main.m in Sources */,
+				EC019E8E0BCE6E4B00C7915B /* BSApplicationController.m in Sources */,
+				EC019ED80BCE77EF00C7915B /* BSTrackSubmitter.m in Sources */,
+				EC019EE30BCE78C700C7915B /* BSITunesTrackListener.m in Sources */,
+				EC019F250BCE7DF000C7915B /* BSTrack.m in Sources */,
+				EC019FBA0BCE85AC00C7915B /* BSTrackFilter.m in Sources */,
+				EC01A09C0BCEB47600C7915B /* NSTimer+Pausing.m in Sources */,
+				EC01A1AB0BCED19300C7915B /* BSRemote.m in Sources */,
+				EC8D7FF90BCFA2DA00DC50B8 /* BSTrackListener.m in Sources */,
+				EC8D807B0BCFA98500DC50B8 /* BSTrackQueue.m in Sources */,
+				EC8D81DF0BCFD10200DC50B8 /* CocoaCryptoHashing.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		089C165CFE840E0CC02AAC07 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				089C165DFE840E0CC02AAC07 /* English */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		29B97318FDCFA39411CA2CEA /* MainMenu.nib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				29B97319FDCFA39411CA2CEA /* English */,
+			);
+			name = MainMenu.nib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		C01FCF4B08A954540054247B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Applications";
+				OTHER_LDFLAGS = "-lcrypto";
+				PRODUCT_NAME = BetterScrobbler;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		C01FCF4C08A954540054247B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (
+					ppc,
+					i386,
+				);
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = G5;
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Applications";
+				OTHER_LDFLAGS = "-lcrypto";
+				PRODUCT_NAME = BetterScrobbler;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		C01FCF4F08A954540054247B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PREBINDING = NO;
+				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
+			};
+			name = Debug;
+		};
+		C01FCF5008A954540054247B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PREBINDING = NO;
+				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "BetterScrobbler" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C01FCF4B08A954540054247B /* Debug */,
+				C01FCF4C08A954540054247B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "BetterScrobbler" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C01FCF4F08A954540054247B /* Debug */,
+				C01FCF5008A954540054247B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 29B97313FDCFA39411CA2CEA /* Project object */;
+}
