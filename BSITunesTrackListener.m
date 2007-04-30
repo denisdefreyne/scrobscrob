@@ -50,8 +50,7 @@ NSString *kPlayerStatePausedValue	= @"Paused";
 	if(![playerState isEqualToString:kPlayerStatePlayingValue])
 	{
 		// Notify paused
-		if([mDelegate respondsToSelector:@selector(trackPaused)])
-			[mDelegate performSelector:@selector(trackPaused)];
+		[mTrackFilter trackPaused];
 	}
 	else
 	{
@@ -65,8 +64,7 @@ NSString *kPlayerStatePausedValue	= @"Paused";
 		BSTrack *track = [[[BSTrack alloc] initWithArtist:artist name:name album:album totalTime:totalTime] autorelease];
 		
 		// Notify played
-		if([mDelegate respondsToSelector:@selector(trackPlayed:)])
-			[mDelegate performSelector:@selector(trackPlayed:) withObject:track];
+		[mTrackFilter trackPlayed:track];
 	}
 }
 

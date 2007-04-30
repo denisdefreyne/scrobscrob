@@ -22,6 +22,11 @@
 	id		mDelegate;
 }
 
+- (void)trackPlayed:(BSTrack *)aTrack;
+- (void)trackPaused;
+
+#pragma mark -
+
 - (id)delegate;
 - (void)setDelegate:(id)aDelegate;
 

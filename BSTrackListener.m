@@ -24,14 +24,18 @@
 
 #pragma mark -
 
-- (id)delegate
+- (BSTrackFilter *)trackFilter
 {
-	return mDelegate;
+	return mTrackFilter;
 }
 
-- (void)setDelegate:(id)aDelegate
+- (void)setTrackFilter:(BSTrackFilter *)aTrackFilter
 {
-	mDelegate = aDelegate;
+	if(mTrackFilter == aTrackFilter)
+		return;
+	
+	[mTrackFilter release];
+	mTrackFilter = [aTrackFilter retain];
 }
 
 @end

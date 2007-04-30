@@ -23,11 +23,6 @@
 
 #pragma mark -
 
-- (void)trackPlayed:(BSTrack *)aTrack;
-- (void)trackPaused;
-
-#pragma mark -
-
 - (void)timerFired:(NSTimer *)aTimer;
 
 @end
@@ -84,41 +79,6 @@
 
 #pragma mark -
 
-- (void)trackPlayed:(BSTrack *)aTrack
-{
-	// Get necessary track information
-	int		totalTime	= [aTrack totalTime];
-	
-	// Resume the timers if the track was paused
-	if([mCurrentTrack isEqual:aTrack])
-	{
-		[mTimerHalf resume];
-		[mTimer240 resume];
-		return;
-	}
-	
-	// Ignore tracks which are shorter than 30 seconds
-	if(totalTime < 30)
-		return;
-	
-	// Save track
-	[self setCurrentTrack:aTrack];
-	
-	// Set up both timers
-	double halfTime = (double)totalTime/(double)2.0;
-	[self setTimerHalf:[NSTimer scheduledTimerWithTimeInterval:halfTime target:self selector:@selector(timerFired:) userInfo:nil repeats:NO]];
-	[self setTimer240:[NSTimer scheduledTimerWithTimeInterval:20. target:self selector:@selector(timerFired:) userInfo:nil repeats:NO]];
-}
-
-- (void)trackPaused
-{
-	// Pause the timers
-	[mTimerHalf pause];
-	[mTimer240 pause];
-}
-
-#pragma mark -
-
 - (void)timerFired:(NSTimer *)aTimer
 {
 	// Remove timer half
@@ -156,6 +116,41 @@
 	[self setTimer240:nil];
 	
 	[super dealloc];
+}
+
+#pragma mark -
+
+- (void)trackPlayed:(BSTrack *)aTrack
+{
+	// Get necessary track information
+	int		totalTime	= [aTrack totalTime];
+	
+	// Resume the timers if the track was paused
+	if([mCurrentTrack isEqual:aTrack])
+	{
+		[mTimerHalf resume];
+		[mTimer240 resume];
+		return;
+	}
+	
+	// Ignore tracks which are shorter than 30 seconds
+	if(totalTime < 30)
+		return;
+	
+	// Save track
+	[self setCurrentTrack:aTrack];
+	
+	// Set up both timers
+	double halfTime = (double)totalTime/(double)2.0;
+	[self setTimerHalf:[NSTimer scheduledTimerWithTimeInterval:halfTime target:self selector:@selector(timerFired:) userInfo:nil repeats:NO]];
+	[self setTimer240:[NSTimer scheduledTimerWithTimeInterval:20. target:self selector:@selector(timerFired:) userInfo:nil repeats:NO]];
+}
+
+- (void)trackPaused
+{
+	// Pause the timers
+	[mTimerHalf pause];
+	[mTimer240 pause];
 }
 
 #pragma mark -

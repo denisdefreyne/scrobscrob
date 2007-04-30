@@ -7,12 +7,14 @@
 
 #import <Cocoa/Cocoa.h>
 
+#import "BSTrackFilter.h"
+
 
 // A track listener checks what iTunes is doing and immediately sends
 // notifications when a song is played or paused.
 
 @interface BSTrackListener : NSObject {
-	id mDelegate;
+	BSTrackFilter	*mTrackFilter;
 }
 
 - (void)start;
@@ -20,7 +22,7 @@
 
 #pragma mark -
 
-- (id)delegate;
-- (void)setDelegate:(id)aDelegate;
+- (BSTrackFilter *)trackFilter;
+- (void)setTrackFilter:(BSTrackFilter *)aTrackFilter;
 
 @end
