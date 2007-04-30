@@ -7,39 +7,30 @@
 
 #import <Cocoa/Cocoa.h>
 
-#import "BSITunesTrackListener.h"
-#import "BSTrackFilter.h"
-#import "BSTrackQueue.h"
-#import "BSTrackSubmitter.h"
 
+@class BSLoginWindowController;
+@class BSTrackListener, BSTrackFilter, BSTrackQueue, BSTrackSubmitter;
 
 @interface BSApplicationController : NSObject {
-	BSTrackListener				*mTrackListener;
-	BSTrackFilter				*mTrackFilter;
-	BSTrackQueue				*mTrackQueue;
-	BSTrackSubmitter			*mTrackSubmitter;
+	IBOutlet BSLoginWindowController	*mLoginWindowController;
 	
-	IBOutlet NSTextField		*mUsernameField;
-	IBOutlet NSSecureTextField	*mPasswordField;
+	BSTrackListener						*mTrackListener;
+	BSTrackFilter						*mTrackFilter;
+	BSTrackQueue						*mTrackQueue;
+	BSTrackSubmitter					*mTrackSubmitter;
+	
+	IBOutlet NSMenu						*mMenu;
+	NSStatusItem						*mStatusItem;
 }
 
-#pragma mark -
-
-- (BSTrackListener *)trackListener;
-- (void)setTrackListener:(BSTrackListener *)aTrackListener;
-	
-- (BSTrackFilter *)trackFilter;
-- (void)setTrackFilter:(BSTrackFilter *)aTrackFilter;
-	
-- (BSTrackQueue *)trackQueue;
-- (void)setTrackQueue:(BSTrackQueue *)aTrackQueue;
-
-- (BSTrackSubmitter *)trackSubmitter;
-- (void)setTrackSubmitter:(BSTrackSubmitter *)aTrackSubmitter;
+- (void)updateMenu;
 
 #pragma mark -
 
-- (IBAction)start:(id)sender;
-- (IBAction)stop:(id)sender;
+- (void)loginWithUsername:(NSString *)aUsername password:(NSString *)aPassword;
+
+#pragma mark -
+
+- (IBAction)toggleScrobbling:(id)sender;
 
 @end

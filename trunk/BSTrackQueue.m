@@ -11,6 +11,9 @@
 #import "BSTrack.h"
 
 
+NSString *BSQueuePausedNotificationName		= @"BS QueuePaused Notification";
+NSString *BSQueueResumedNotificationName	= @"BS QueueResumed Notification";
+
 @interface BSTrackQueue (Private)
 
 - (void)queueTrack:(BSTrack *)aTrack;
@@ -79,6 +82,7 @@
 	if(self = [super init])
 	{
 		mMaySubmit = NO;
+		mIsPaused = YES;
 		[self setQueuedTracks:[[[NSMutableArray alloc] init] autorelease]];
 	}
 	
@@ -116,6 +120,7 @@
 	NSLog(@"Pausing.");
 	
 	mIsPaused = YES;
+	[[NSNotificationCenter defaultCenter] postNotificationName:BSQueuePausedNotificationName object:nil];
 }
 
 - (void)resume
@@ -123,9 +128,15 @@
 	NSLog(@"Resuming.");
 	
 	mIsPaused = NO;
+	[[NSNotificationCenter defaultCenter] postNotificationName:BSQueueResumedNotificationName object:nil];
 	
 	// Submit queued tracks
 	[self submitTracks:mQueuedTracks];
+}
+
+- (BOOL)isPaused
+{
+	return mIsPaused;
 }
 
 #pragma mark -

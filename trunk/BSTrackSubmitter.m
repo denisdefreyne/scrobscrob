@@ -209,6 +209,7 @@ NSString *kSubmitAction		= @"BS Submit Action";
 	[mTrackQueue submitIntervalReceived:[NSNumber numberWithDouble:interval]];
 	
 	NSLog(@"Logged in.");
+	[mTrackQueue resume];
 	mIsLoggedIn = YES;
 }
 

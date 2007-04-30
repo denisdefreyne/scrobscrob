@@ -7,6 +7,13 @@
 
 #import "BSApplicationController.h"
 
+#import "BSLoginWindowController.h"
+#import "BSTrackListener.h"
+#import "BSITunesTrackListener.h"
+#import "BSTrackFilter.h"
+#import "BSTrackQueue.h"
+#import "BSTrackSubmitter.h"
+
 
 @implementation BSApplicationController
 
@@ -15,21 +22,33 @@
 	if(self = [super init])
 	{
 		// Create track listener
-		[self setTrackListener:[[[BSITunesTrackListener alloc] init] autorelease]];
+		mTrackListener = [[BSITunesTrackListener alloc] init];
 		[mTrackListener start];
 		
 		// Create track filter
-		[self setTrackFilter:[[[BSTrackFilter alloc] init] autorelease]];
+		mTrackFilter = [[BSTrackFilter alloc] init];
 		[mTrackListener setTrackFilter:mTrackFilter];
 		
 		// Create track queue
-		[self setTrackQueue:[[[BSTrackQueue alloc] init] autorelease]];
+		mTrackQueue = [[BSTrackQueue alloc] init];
 		[mTrackFilter setTrackQueue:mTrackQueue];
 		
 		// Create track submitter
-		[self setTrackSubmitter:[[[BSTrackSubmitter alloc] init] autorelease]];
+		mTrackSubmitter = [[BSTrackSubmitter alloc] init];;
 		[mTrackQueue setTrackSubmitter:mTrackSubmitter];
 		[mTrackSubmitter setTrackQueue:mTrackQueue];
+		
+		// Setup notifications
+		[[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(queuePausedOrResumed:)
+                                                     name:BSQueueResumedNotificationName
+                                                   object:nil
+		];
+		[[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(queuePausedOrResumed:)
+                                                     name:BSQueuePausedNotificationName
+                                                   object:nil
+		];
 	}
 	
 	return self;
@@ -39,84 +58,67 @@
 {
 	[mTrackListener stop];
 	
-	[self setTrackListener:nil];
-	[self setTrackFilter:nil];
-	[self setTrackSubmitter:nil];
+	[mTrackListener release];
+	[mTrackFilter release];
+	[mTrackQueue release];
+	[mTrackSubmitter release];
+	
+	[mMenu release];
+	[mStatusItem release];
 	
 	[super dealloc];
 }
 
-#pragma mark -
-
-- (BSTrackListener *)trackListener
+- (void)awakeFromNib
 {
-	return mTrackListener;
-}
-
-- (void)setTrackListener:(BSTrackListener *)aTrackListener
-{
-	if(mTrackListener == aTrackListener)
-		return;
+	mStatusItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength] retain];
+	[mStatusItem setTitle:@"ScrobScrob"];
+	[mStatusItem setHighlightMode:YES];
+	[mStatusItem setMenu:mMenu];
 	
-	[mTrackListener release];
-	mTrackListener = [aTrackListener retain];
-}
-
-- (BSTrackFilter *)trackFilter
-{
-	return mTrackFilter;
-}
-
-- (void)setTrackFilter:(BSTrackFilter *)aTrackFilter
-{
-	if(mTrackFilter == aTrackFilter)
-		return;
-	
-	[mTrackFilter release];
-	mTrackFilter = [aTrackFilter retain];
-}
-
-- (BSTrackSubmitter *)trackSubmitter
-{
-	return mTrackSubmitter;
-}
-
-- (void)setTrackSubmitter:(BSTrackSubmitter *)aTrackSubmitter
-{
-	if(mTrackSubmitter == aTrackSubmitter)
-		return;
-	
-	[mTrackSubmitter release];
-	mTrackSubmitter = [aTrackSubmitter retain];
-}
-
-- (BSTrackQueue *)trackQueue
-{
-	return mTrackQueue;
-}
-
-- (void)setTrackQueue:(BSTrackQueue *)aTrackQueue
-{
-	if(mTrackQueue == aTrackQueue)
-		return;
-	
-	[mTrackQueue release];
-	mTrackQueue = [aTrackQueue retain];
+	[self updateMenu];
 }
 
 #pragma mark -
 
-- (IBAction)start:(id)sender
+- (void)queuePausedOrResumed:(NSNotification *)aNotification
 {
-	if([mTrackSubmitter isLoggedIn])
+	[self updateMenu];
+}
+
+- (void)updateMenu
+{
+	// TODO localize
+	if([mTrackQueue isPaused])
+		[[mMenu itemAtIndex:0] setTitle:@"Start Scrobbling"];
+	else
+		[[mMenu itemAtIndex:0] setTitle:@"Stop Scrobbling"];
+}
+
+#pragma mark -
+
+- (void)loginWithUsername:(NSString *)aUsername password:(NSString *)aPassword
+{
+	[mTrackSubmitter loginWithUsername:aUsername password:aPassword];
+}
+
+#pragma mark -
+
+- (IBAction)toggleScrobbling:(id)sender
+{
+	// Check whether we need to login first
+	if(![mTrackSubmitter isLoggedIn])
+	{
+		[mLoginWindowController showWindow:self];
+		[[mLoginWindowController window] center];
+		[[mLoginWindowController window] makeKeyAndOrderFront:self];
+		return;
+	}
+	
+	if([mTrackQueue isPaused])
 		[mTrackQueue resume];
 	else
-		[mTrackSubmitter loginWithUsername:[mUsernameField stringValue] password:[mPasswordField stringValue]];
-}
-
-- (IBAction)stop:(id)sender
-{
-	[mTrackQueue pause];
+		[mTrackQueue pause];
 }
 
 @end
