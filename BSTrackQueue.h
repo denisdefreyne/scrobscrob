@@ -26,6 +26,7 @@
 #pragma mark -
 
 - (void)trackFiltered:(BSTrack *)aTrack;
+- (void)submitIntervalReceived:(NSNumber *)aInterval;
 
 #pragma mark -
 
