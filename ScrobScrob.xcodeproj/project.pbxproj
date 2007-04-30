@@ -17,7 +17,6 @@
 		EC019F250BCE7DF000C7915B /* BSTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = EC019F240BCE7DF000C7915B /* BSTrack.m */; };
 		EC019FBA0BCE85AC00C7915B /* BSTrackFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = EC019FB90BCE85AC00C7915B /* BSTrackFilter.m */; };
 		EC01A09C0BCEB47600C7915B /* NSTimer+Pausing.m in Sources */ = {isa = PBXBuildFile; fileRef = EC01A09B0BCEB47600C7915B /* NSTimer+Pausing.m */; };
-		EC01A1AB0BCED19300C7915B /* BSRemote.m in Sources */ = {isa = PBXBuildFile; fileRef = EC01A1AA0BCED19300C7915B /* BSRemote.m */; };
 		EC8D7FF90BCFA2DA00DC50B8 /* BSTrackListener.m in Sources */ = {isa = PBXBuildFile; fileRef = EC8D7FF80BCFA2DA00DC50B8 /* BSTrackListener.m */; };
 		EC8D807B0BCFA98500DC50B8 /* BSTrackQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = EC8D807A0BCFA98500DC50B8 /* BSTrackQueue.m */; };
 		EC8D81DF0BCFD10200DC50B8 /* CocoaCryptoHashing.m in Sources */ = {isa = PBXBuildFile; fileRef = EC8D81DE0BCFD10200DC50B8 /* CocoaCryptoHashing.m */; };
@@ -46,8 +45,6 @@
 		EC019FB90BCE85AC00C7915B /* BSTrackFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSTrackFilter.m; sourceTree = "<group>"; };
 		EC01A09A0BCEB47600C7915B /* NSTimer+Pausing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTimer+Pausing.h"; sourceTree = "<group>"; };
 		EC01A09B0BCEB47600C7915B /* NSTimer+Pausing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+Pausing.m"; sourceTree = "<group>"; };
-		EC01A1A90BCED19300C7915B /* BSRemote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSRemote.h; sourceTree = "<group>"; };
-		EC01A1AA0BCED19300C7915B /* BSRemote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSRemote.m; sourceTree = "<group>"; };
 		EC8D7FF70BCFA2DA00DC50B8 /* BSTrackListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSTrackListener.h; sourceTree = "<group>"; };
 		EC8D7FF80BCFA2DA00DC50B8 /* BSTrackListener.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSTrackListener.m; sourceTree = "<group>"; };
 		EC8D80790BCFA98500DC50B8 /* BSTrackQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSTrackQueue.h; sourceTree = "<group>"; };
@@ -76,8 +73,6 @@
 				EC019E8D0BCE6E4B00C7915B /* BSApplicationController.m */,
 				EC019F230BCE7DF000C7915B /* BSTrack.h */,
 				EC019F240BCE7DF000C7915B /* BSTrack.m */,
-				EC01A1A90BCED19300C7915B /* BSRemote.h */,
-				EC01A1AA0BCED19300C7915B /* BSRemote.m */,
 				EC01A09A0BCEB47600C7915B /* NSTimer+Pausing.h */,
 				EC01A09B0BCEB47600C7915B /* NSTimer+Pausing.m */,
 				EC8D81DD0BCFD10200DC50B8 /* CocoaCryptoHashing.h */,
@@ -237,7 +232,6 @@
 				EC019F250BCE7DF000C7915B /* BSTrack.m in Sources */,
 				EC019FBA0BCE85AC00C7915B /* BSTrackFilter.m in Sources */,
 				EC01A09C0BCEB47600C7915B /* NSTimer+Pausing.m in Sources */,
-				EC01A1AB0BCED19300C7915B /* BSRemote.m in Sources */,
 				EC8D7FF90BCFA2DA00DC50B8 /* BSTrackListener.m in Sources */,
 				EC8D807B0BCFA98500DC50B8 /* BSTrackQueue.m in Sources */,
 				EC8D81DF0BCFD10200DC50B8 /* CocoaCryptoHashing.m in Sources */,
