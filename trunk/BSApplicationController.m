@@ -106,9 +106,17 @@
 
 #pragma mark -
 
-- (IBAction)login:(id)sender
+- (IBAction)start:(id)sender
 {
-	[mTrackSubmitter loginWithUsername:[mUsernameField stringValue] password:[mPasswordField stringValue]];
+	if([mTrackSubmitter isLoggedIn])
+		[mTrackQueue resume];
+	else
+		[mTrackSubmitter loginWithUsername:[mUsernameField stringValue] password:[mPasswordField stringValue]];
+}
+
+- (IBAction)stop:(id)sender
+{
+	[mTrackQueue pause];
 }
 
 @end

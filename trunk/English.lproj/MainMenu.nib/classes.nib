@@ -1,7 +1,7 @@
 {
     IBClasses = (
         {
-            ACTIONS = {login = id; playNext = id; playOrPause = id; playPrev = id; }; 
+            ACTIONS = {start = id; stop = id; }; 
             CLASS = BSApplicationController; 
             LANGUAGE = ObjC; 
             OUTLETS = {mPasswordField = NSSecureTextField; mUsernameField = NSTextField; }; 
