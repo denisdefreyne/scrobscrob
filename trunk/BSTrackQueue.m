@@ -7,10 +7,12 @@
 
 #import "BSTrackQueue.h"
 
+#import "BSTrackSubmitter.h"
+#import "BSTrack.h"
+
 
 @interface BSTrackQueue (Private)
 
-- (void)trackFiltered:(BSTrack *)aTrack;
 - (void)submitIntervalReceived:(NSNumber *)aInterval;
 
 #pragma mark -
@@ -21,15 +23,6 @@
 @end
 
 @implementation BSTrackQueue (Private)
-
-- (void)trackFiltered:(BSTrack *)aTrack
-{
-	// Queue or submit track
-	if(mMaySubmit && !mIsPaused)
-		[self submitTracks:[NSArray arrayWithObject:aTrack]];
-	else
-		[self queueTrack:aTrack];
-}
 
 - (void)submitIntervalReceived:(NSNumber *)aTimeInterval
 {
@@ -63,8 +56,7 @@
 		return;
 	
 	// Submit tracks
-	if([mDelegate respondsToSelector:@selector(submitTracks:)])
-		[mDelegate performSelector:@selector(submitTracks:) withObject:aTracks];
+	[mTrackSubmitter submitTracks:aTracks];
 	
 	// Disallow submitting
 	mMaySubmit = NO;
@@ -105,6 +97,17 @@
 
 #pragma mark -
 
+- (void)trackFiltered:(BSTrack *)aTrack
+{
+	// Queue or submit track
+	if(mMaySubmit && !mIsPaused)
+		[self submitTracks:[NSArray arrayWithObject:aTrack]];
+	else
+		[self queueTrack:aTrack];
+}
+
+#pragma mark -
+
 - (void)pause
 {
 	NSLog(@"Pausing.");
@@ -124,14 +127,18 @@
 
 #pragma mark -
 
-- (id)delegate
+- (BSTrackSubmitter *)trackSubmitter
 {
-	return mDelegate;
+	return mTrackSubmitter;
 }
 
-- (void)setDelegate:(id)aDelegate
+- (void)setTrackSubmitter:(BSTrackSubmitter *)aTrackSubmitter
 {
-	mDelegate = aDelegate;
+	if(mTrackSubmitter == aTrackSubmitter)
+		return;
+	
+	[mTrackSubmitter release];
+	mTrackSubmitter = [aTrackSubmitter retain];
 }
 
 @end

@@ -20,15 +20,15 @@
 		
 		// Create track filter
 		[self setTrackFilter:[[[BSTrackFilter alloc] init] autorelease]];
-		[mTrackListener setDelegate:mTrackFilter];
+		[mTrackListener setTrackFilter:mTrackFilter];
 		
 		// Create track queue
 		[self setTrackQueue:[[[BSTrackQueue alloc] init] autorelease]];
-		[mTrackFilter setDelegate:mTrackQueue];
+		[mTrackFilter setTrackQueue:mTrackQueue];
 		
 		// Create track submitter
 		[self setTrackSubmitter:[[[BSTrackSubmitter alloc] init] autorelease]];
-		[mTrackQueue setDelegate:mTrackSubmitter];
+		[mTrackQueue setTrackSubmitter:mTrackSubmitter];
 		[mTrackSubmitter setDelegate:mTrackQueue];
 	}
 	

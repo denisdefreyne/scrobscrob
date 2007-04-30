@@ -7,6 +7,7 @@
 
 #import "BSITunesTrackListener.h"
 
+#import "BSTrackFilter.h"
 #import "BSTrack.h"
 
 

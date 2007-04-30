@@ -12,6 +12,15 @@
 
 @implementation BSTrackListener
 
+- (void)dealloc
+{
+	[self setTrackFilter:nil];
+	
+	[super dealloc];
+}
+
+#pragma mark -
+
 - (void)start
 {
 	;
