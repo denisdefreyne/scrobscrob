@@ -25,7 +25,7 @@
 - (void)trackFiltered:(BSTrack *)aTrack
 {
 	// Queue or submit track
-	if(mMaySubmit)
+	if(mMaySubmit && !mIsPaused)
 		[self submitTracks:[NSArray arrayWithObject:aTrack]];
 	else
 		[self queueTrack:aTrack];
@@ -101,6 +101,25 @@
 	}
 	
 	return self;
+}
+
+#pragma mark -
+
+- (void)pause
+{
+	NSLog(@"Pausing.");
+	
+	mIsPaused = YES;
+}
+
+- (void)resume
+{
+	NSLog(@"Resuming.");
+	
+	mIsPaused = NO;
+	
+	// Submit queued tracks
+	[self submitTracks:mQueuedTracks];
 }
 
 #pragma mark -
