@@ -146,7 +146,7 @@
 	// Set up both timers
 	double halfTime = (double)totalTime/(double)2.0;
 	[self setTimerHalf:[NSTimer scheduledTimerWithTimeInterval:halfTime target:self selector:@selector(timerFired:) userInfo:nil repeats:NO]];
-	[self setTimer240:[NSTimer scheduledTimerWithTimeInterval:20. target:self selector:@selector(timerFired:) userInfo:nil repeats:NO]];
+	[self setTimer240:[NSTimer scheduledTimerWithTimeInterval:240. target:self selector:@selector(timerFired:) userInfo:nil repeats:NO]];
 }
 
 - (void)trackPaused
