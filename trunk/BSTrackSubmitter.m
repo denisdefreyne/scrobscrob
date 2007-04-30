@@ -67,13 +67,15 @@ NSString *kSubmitAction		= @"BS Submit Action";
 
 - (void)connection:(NSURLConnection *)aConnection didReceiveData:(NSData *)aData
 {
+	NSLog(@"...... received %@", [[[NSString alloc] initWithData:mData encoding:NSUTF8StringEncoding] autorelease]);
 	[mData appendData:aData];
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)aConnection
 {
 	// Convert data to string
-	NSString *string = [NSString stringWithCString:[mData bytes] encoding:NSUTF8StringEncoding];
+	NSString *string = [[[NSString alloc] initWithData:mData encoding:NSUTF8StringEncoding] autorelease];
+	NSLog(@"===== RECEIVED DATA =====\n%@\n==========", string);
 	
 	// Check action
 	if(mAction == kHandshakeAction)
@@ -103,7 +105,7 @@ NSString *kSubmitAction		= @"BS Submit Action";
 // FAILED <reason>
 // INTERVAL <n>
 // --------------------
-// BADUSER <reason>
+// BADUSER
 // INTERVAL <n>
 // --------------------
 
@@ -117,10 +119,25 @@ NSString *kSubmitAction		= @"BS Submit Action";
 		return;
 	}
 	
-	// TODO Check whether we have an error condition
-	if([components count] == 2)
+	NSMutableString *newResponse = [[[NSMutableString alloc] init] autorelease];
+	[newResponse appendString:aResponse];
+	[newResponse replaceOccurrencesOfString:@"\r" withString:@"\\r" options:0 range:NSMakeRange(0, [newResponse length])];
+	[newResponse replaceOccurrencesOfString:@"\n" withString:@"\\n" options:0 range:NSMakeRange(0, [newResponse length])];
+	NSLog(@"-->%@<--", newResponse);
+	
+	NSLog(@">>> %@ <<<", [components objectAtIndex:0]);
+	NSLog(@"... %@", [[components objectAtIndex:0] substringToIndex:5]);
+	NSLog(@"... %@", [[components objectAtIndex:0] substringToIndex:7]);
+	
+	// Check whether we have an error condition
+	if([components count] == 3)
 	{
-		NSLog(@"!!! WARNING: Error condition: %@", aResponse);
+		if([[[components objectAtIndex:0] substringToIndex:7] isEqualToString:@"BADUSER"])
+			NSLog(@"!!! ERROR: BADUSER");
+		else if([[[components objectAtIndex:0] substringToIndex:5] isEqualToString:@"FAILED"])
+			NSLog(@"!!! ERROR: FAILED: %@", [[components objectAtIndex:0] substringFromIndex:6]);
+		else
+			NSLog(@"!!! ERROR: (unknown: %@)", [components objectAtIndex:0]);
 		return;
 	}
 	
@@ -139,11 +156,48 @@ NSString *kSubmitAction		= @"BS Submit Action";
 	// Notify track queue
 	if([mDelegate respondsToSelector:@selector(submitIntervalReceived:)])
 		[mDelegate performSelector:@selector(submitIntervalReceived:) withObject:[NSNumber numberWithDouble:interval]];
+	
+	NSLog(@"Logged in.");
+	mIsLoggedIn = YES;
 }
+
+// --------------------
+// OK
+// INTERVAL <n>
+// --------------------
+// FAILED <reason>
+// INTERVAL <n>
+// --------------------
+// BADAUTH
+// INTERVAL <n>
+// --------------------
 
 - (void)handleSubmitResponse:(NSString *)aResponse
 {
+	// Split string and do a small check
+	NSArray *components = [aResponse componentsSeparatedByString:@"\n"];
+	if([components count] != 3)
+	{
+		NSLog(@"!!! ERROR: Malformatted handshake response: %@", aResponse);
+		return;
+	}
+	
+	// TODO Check whether we have an error condition
+	if(0)
+	{
+		NSLog(@"!!! WARNING: Error condition: %@", aResponse);
+		return;
+	}
+	
+	// TODO Check whether the format is in the correct format
 	;
+	
+	// Extract interval
+	double interval = (double)[[[components objectAtIndex:1] substringFromIndex:9] intValue];
+	
+	// Notify track queue
+	if([mDelegate respondsToSelector:@selector(submitIntervalReceived:)])
+		[mDelegate performSelector:@selector(submitIntervalReceived:) withObject:[NSNumber numberWithDouble:interval]];
 }
 
 #pragma mark -
@@ -208,6 +262,16 @@ NSString *kSubmitAction		= @"BS Submit Action";
 
 @implementation BSTrackSubmitter
 
+- (id)init
+{
+	if(self = [super init])
+	{
+		mIsLoggedIn = NO;
+	}
+	
+	return self;
+}
+
 - (void)dealloc
 {
 	[self setData:nil];
@@ -225,6 +289,11 @@ NSString *kSubmitAction		= @"BS Submit Action";
 - (void)setDelegate:(id)aDelegate
 {
 	mDelegate = aDelegate;
+}
+
+- (BOOL)isLoggedIn
+{
+	return mIsLoggedIn;
 }
 
 #pragma mark -

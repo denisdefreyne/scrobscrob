@@ -14,6 +14,7 @@
 @interface BSTrackSubmitter : NSObject {
 	NSMutableData	*mData;
 	id				mDelegate;
+	BOOL			mIsLoggedIn;
 	NSString		*mAction;
 	NSString		*mUsername;
 	NSString		*mSingleHashedPassword;
@@ -23,6 +24,10 @@
 
 - (void)loginWithUsername:(NSString *)aUsername password:(NSString *)aPassword;
 - (void)submitTracks:(NSArray *)aTracks;
+
+#pragma mark -
+
+- (BOOL)isLoggedIn;
 
 #pragma mark -
 
