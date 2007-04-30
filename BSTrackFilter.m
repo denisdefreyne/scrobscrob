@@ -8,6 +8,8 @@
 #import "BSTrackFilter.h"
 
 #import "NSTimer+Pausing.h"
+#import "BSTrackQueue.h"
+#import "BSTrack.h"
 
 
 @interface BSTrackFilter (Private)
@@ -90,8 +92,7 @@
 	[self setTimer240:nil];
 	
 	// Submit the track
-	if([mDelegate respondsToSelector:@selector(trackFiltered:)])
-		[mDelegate performSelector:@selector(trackFiltered:) withObject:mCurrentTrack];
+	[mTrackQueue trackFiltered:mCurrentTrack];
 }
 
 @end
@@ -114,6 +115,8 @@
 {
 	[self setTimerHalf:nil];
 	[self setTimer240:nil];
+	
+	[self setTrackQueue:nil];
 	
 	[super dealloc];
 }
@@ -155,14 +158,18 @@
 
 #pragma mark -
 
-- (id)delegate
+- (BSTrackQueue *)trackQueue
 {
-	return mDelegate;
+	return mTrackQueue;
 }
 
-- (void)setDelegate:(id)aDelegate
+- (void)setTrackQueue:(BSTrackQueue *)aTrackQueue
 {
-	mDelegate = aDelegate;
+	if(mTrackQueue == aTrackQueue)
+		return;
+	
+	[mTrackQueue release];
+	mTrackQueue = [aTrackQueue retain];
 }
 
 @end

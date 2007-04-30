@@ -7,21 +7,25 @@
 
 #import <Cocoa/Cocoa.h>
 
-#import "BSTrack.h"
-
 
 // A track queue stores newly listened tracks and hands them off to the
 // submitter as soon as possible.
 
+@class BSTrackSubmitter, BSTrack;
+
 @interface BSTrackQueue : NSObject {
-	id				mDelegate;
-	BOOL			mMaySubmit;
-	BOOL			mIsPaused;
-	NSMutableArray	*mQueuedTracks;
+	BSTrackSubmitter	*mTrackSubmitter;
+	BOOL				mMaySubmit;
+	BOOL				mIsPaused;
+	NSMutableArray		*mQueuedTracks;
 }
 
-- (id)delegate;
-- (void)setDelegate:(id)aDelegate;
+- (BSTrackSubmitter *)trackSubmitter;
+- (void)setTrackSubmitter:(BSTrackSubmitter *)aTrackSubmitter;
+
+#pragma mark -
+
+- (void)trackFiltered:(BSTrack *)aTrack;
 
 #pragma mark -
 
