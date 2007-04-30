@@ -16,10 +16,16 @@
 @interface BSTrackQueue : NSObject {
 	id				mDelegate;
 	BOOL			mMaySubmit;
+	BOOL			mIsPaused;
 	NSMutableArray	*mQueuedTracks;
 }
 
 - (id)delegate;
 - (void)setDelegate:(id)aDelegate;
+
+#pragma mark -
+
+- (void)pause;
+- (void)resume;
 
 @end
