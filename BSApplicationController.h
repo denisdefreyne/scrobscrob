@@ -37,9 +37,9 @@
 - (BSTrackSubmitter *)trackSubmitter;
 - (void)setTrackSubmitter:(BSTrackSubmitter *)aTrackSubmitter;
 
-
 #pragma mark -
 
-- (IBAction)login:(id)sender;
+- (IBAction)start:(id)sender;
+- (IBAction)stop:(id)sender;
 
 @end
