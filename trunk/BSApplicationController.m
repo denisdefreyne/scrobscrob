@@ -30,9 +30,6 @@
 		[self setTrackSubmitter:[[[BSTrackSubmitter alloc] init] autorelease]];
 		[mTrackQueue setDelegate:mTrackSubmitter];
 		[mTrackSubmitter setDelegate:mTrackQueue];
-		
-		// Create remote
-		[self setRemote:[[[BSRemote alloc] init] autorelease]];
 	}
 	
 	return self;
@@ -45,7 +42,6 @@
 	[self setTrackListener:nil];
 	[self setTrackFilter:nil];
 	[self setTrackSubmitter:nil];
-	[self setRemote:nil];
 	
 	[super dealloc];
 }
@@ -108,36 +104,7 @@
 	mTrackQueue = [aTrackQueue retain];
 }
 
-- (BSRemote *)remote
-{
-	return mRemote;
-}
-
-- (void)setRemote:(BSRemote *)aRemote
-{
-	if(mRemote == aRemote)
-		return;
-	
-	[mRemote release];
-	mRemote = [aRemote retain];
-}
-
 #pragma mark -
-
-- (IBAction)playOrPause:(id)sender
-{
-	[mRemote playOrPause];
-}
-
-- (IBAction)playPrev:(id)sender
-{
-	[mRemote playPrev];
-}
-
-- (IBAction)playNext:(id)sender
-{
-	[mRemote playNext];
-}
 
 - (IBAction)login:(id)sender
 {
