@@ -29,7 +29,7 @@
 		// Create track submitter
 		[self setTrackSubmitter:[[[BSTrackSubmitter alloc] init] autorelease]];
 		[mTrackQueue setTrackSubmitter:mTrackSubmitter];
-		[mTrackSubmitter setDelegate:mTrackQueue];
+		[mTrackSubmitter setTrackQueue:mTrackQueue];
 	}
 	
 	return self;

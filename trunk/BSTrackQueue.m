@@ -13,22 +13,12 @@
 
 @interface BSTrackQueue (Private)
 
-- (void)submitIntervalReceived:(NSNumber *)aInterval;
-
-#pragma mark -
-
 - (void)queueTrack:(BSTrack *)aTrack;
 - (void)submitTracks:(NSArray *)aTracks;
 
 @end
 
 @implementation BSTrackQueue (Private)
-
-- (void)submitIntervalReceived:(NSNumber *)aTimeInterval
-{
-	// Allow updates on given date
-	[NSTimer scheduledTimerWithTimeInterval:[aTimeInterval doubleValue] target:self selector:@selector(readyForSubmitting:) userInfo:nil repeats:NO];
-}
 
 - (void)readyForSubmitting:(NSTimer *)aTimer
 {
@@ -95,6 +85,13 @@
 	return self;
 }
 
+- (void)dealloc
+{
+	[self setTrackSubmitter:nil];
+	
+	[super dealloc];
+}
+
 #pragma mark -
 
 - (void)trackFiltered:(BSTrack *)aTrack
@@ -104,6 +101,12 @@
 		[self submitTracks:[NSArray arrayWithObject:aTrack]];
 	else
 		[self queueTrack:aTrack];
+}
+
+- (void)submitIntervalReceived:(NSNumber *)aTimeInterval
+{
+	// Allow updates on given date
+	[NSTimer scheduledTimerWithTimeInterval:[aTimeInterval doubleValue] target:self selector:@selector(readyForSubmitting:) userInfo:nil repeats:NO];
 }
 
 #pragma mark -

@@ -7,13 +7,14 @@
 
 #import <Cocoa/Cocoa.h>
 
-#import "BSTrack.h"
-#import "BSTrackFilter.h"
 
+// A track submitter logs in and submits tracks immediately.
+
+@class BSTrackQueue, BSTrack;
 
 @interface BSTrackSubmitter : NSObject {
 	NSMutableData	*mData;
-	id				mDelegate;
+	BSTrackQueue	*mTrackQueue;
 	BOOL			mIsLoggedIn;
 	NSString		*mAction;
 	NSString		*mUsername;
@@ -31,7 +32,7 @@
 
 #pragma mark -
 
-- (id)delegate;
-- (void)setDelegate:(id)aDelegate;
+- (BSTrackQueue *)trackQueue;
+- (void)setTrackQueue:(BSTrackQueue *)aTrackQueue;
 
 @end
