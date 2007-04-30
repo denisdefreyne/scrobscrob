@@ -1,14 +1,7 @@
 {
     IBClasses = (
         {
-            ACTIONS = {login = id; toggleScrobbling = id; }; 
-            CLASS = BSApplicationController; 
-            LANGUAGE = ObjC; 
-            OUTLETS = {mLoginWindowController = BSLoginWindowController; mMenu = NSMenu; }; 
-            SUPERCLASS = NSObject; 
-        }, 
-        {
-            ACTIONS = {login = id; }; 
+            ACTIONS = {cancel = id; login = id; }; 
             CLASS = BSLoginWindowController; 
             LANGUAGE = ObjC; 
             OUTLETS = {
