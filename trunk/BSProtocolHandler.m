@@ -357,6 +357,11 @@ NSString *kSubmitAction		= @"BS Submit Action";
 	return mIsLoggedIn;
 }
 
+- (NSString *)username
+{
+	return mUsername;
+}
+
 #pragma mark -
 
 - (void)loginWithUsername:(NSString *)aUsername password:(NSString *)aPassword

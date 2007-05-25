@@ -60,6 +60,11 @@
 	return [mProtocolHandler isLoggedIn];
 }
 
+- (NSString *)username
+{
+	return [mProtocolHandler username];
+}
+
 - (void)loginWithUsername:(NSString *)aUsername password:(NSString *)aPassword
 {
 	[mProtocolHandler loginWithUsername:aUsername password:aPassword];
