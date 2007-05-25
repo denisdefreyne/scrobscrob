@@ -9,15 +9,12 @@
 
 
 @class BSLoginWindowController;
-@class BSTrackListener, BSTrackFilter, BSTrackQueue, BSTrackSubmitter;
+@class BSScrobbler;
 
 @interface BSApplicationController : NSObject {
 	IBOutlet BSLoginWindowController	*mLoginWindowController;
 	
-	BSTrackListener						*mTrackListener;
-	BSTrackFilter						*mTrackFilter;
-	BSTrackQueue						*mTrackQueue;
-	BSTrackSubmitter					*mTrackSubmitter;
+	BSScrobbler							*mScrobbler;
 	
 	IBOutlet NSMenu						*mMenu;
 	NSStatusItem						*mStatusItem;
