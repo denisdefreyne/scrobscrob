@@ -12,13 +12,13 @@
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		EC019E8E0BCE6E4B00C7915B /* BSApplicationController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC019E8D0BCE6E4B00C7915B /* BSApplicationController.m */; };
-		EC019ED80BCE77EF00C7915B /* BSTrackSubmitter.m in Sources */ = {isa = PBXBuildFile; fileRef = EC019ED70BCE77EF00C7915B /* BSTrackSubmitter.m */; };
 		EC019EE30BCE78C700C7915B /* BSITunesTrackListener.m in Sources */ = {isa = PBXBuildFile; fileRef = EC019EE20BCE78C700C7915B /* BSITunesTrackListener.m */; };
 		EC019F250BCE7DF000C7915B /* BSTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = EC019F240BCE7DF000C7915B /* BSTrack.m */; };
 		EC019FBA0BCE85AC00C7915B /* BSTrackFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = EC019FB90BCE85AC00C7915B /* BSTrackFilter.m */; };
 		EC01A09C0BCEB47600C7915B /* NSTimer+Pausing.m in Sources */ = {isa = PBXBuildFile; fileRef = EC01A09B0BCEB47600C7915B /* NSTimer+Pausing.m */; };
 		EC0E22870BE730E200459978 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = EC0E22860BE730E200459978 /* Credits.rtf */; };
 		EC18BFBE0C07341900D9BA36 /* BSScrobbler.m in Sources */ = {isa = PBXBuildFile; fileRef = EC18BFBD0C07341900D9BA36 /* BSScrobbler.m */; };
+		EC18C06D0C0739CF00D9BA36 /* BSProtocolHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = EC18C06C0C0739CF00D9BA36 /* BSProtocolHandler.m */; };
 		EC7467430BE619FF00A25588 /* BSLoginWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC7467420BE619FF00A25588 /* BSLoginWindowController.m */; };
 		EC7467940BE61B8B00A25588 /* LoginWindow.nib in Resources */ = {isa = PBXBuildFile; fileRef = EC7467930BE61B8B00A25588 /* LoginWindow.nib */; };
 		EC8D7FF90BCFA2DA00DC50B8 /* BSTrackListener.m in Sources */ = {isa = PBXBuildFile; fileRef = EC8D7FF80BCFA2DA00DC50B8 /* BSTrackListener.m */; };
@@ -39,8 +39,6 @@
 		8D1107320486CEB800E47090 /* ScrobScrob.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScrobScrob.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC019E8C0BCE6E4B00C7915B /* BSApplicationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSApplicationController.h; sourceTree = "<group>"; };
 		EC019E8D0BCE6E4B00C7915B /* BSApplicationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSApplicationController.m; sourceTree = "<group>"; };
-		EC019ED60BCE77EF00C7915B /* BSTrackSubmitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSTrackSubmitter.h; sourceTree = "<group>"; };
-		EC019ED70BCE77EF00C7915B /* BSTrackSubmitter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSTrackSubmitter.m; sourceTree = "<group>"; };
 		EC019EE10BCE78C700C7915B /* BSITunesTrackListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSITunesTrackListener.h; sourceTree = "<group>"; };
 		EC019EE20BCE78C700C7915B /* BSITunesTrackListener.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSITunesTrackListener.m; sourceTree = "<group>"; };
 		EC019F230BCE7DF000C7915B /* BSTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSTrack.h; sourceTree = "<group>"; };
@@ -52,6 +50,8 @@
 		EC0E22860BE730E200459978 /* Credits.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Credits.rtf; sourceTree = "<group>"; };
 		EC18BFBC0C07341900D9BA36 /* BSScrobbler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSScrobbler.h; sourceTree = "<group>"; };
 		EC18BFBD0C07341900D9BA36 /* BSScrobbler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSScrobbler.m; sourceTree = "<group>"; };
+		EC18C06B0C0739CF00D9BA36 /* BSProtocolHandler.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = BSProtocolHandler.h; sourceTree = "<group>"; };
+		EC18C06C0C0739CF00D9BA36 /* BSProtocolHandler.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = BSProtocolHandler.m; sourceTree = "<group>"; };
 		EC7467410BE619FF00A25588 /* BSLoginWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSLoginWindowController.h; sourceTree = "<group>"; };
 		EC7467420BE619FF00A25588 /* BSLoginWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSLoginWindowController.m; sourceTree = "<group>"; };
 		EC7467930BE61B8B00A25588 /* LoginWindow.nib */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; path = LoginWindow.nib; sourceTree = "<group>"; };
@@ -175,8 +175,8 @@
 				EC019FB90BCE85AC00C7915B /* BSTrackFilter.m */,
 				EC8D80790BCFA98500DC50B8 /* BSTrackQueue.h */,
 				EC8D807A0BCFA98500DC50B8 /* BSTrackQueue.m */,
-				EC019ED60BCE77EF00C7915B /* BSTrackSubmitter.h */,
-				EC019ED70BCE77EF00C7915B /* BSTrackSubmitter.m */,
+				EC18C06B0C0739CF00D9BA36 /* BSProtocolHandler.h */,
+				EC18C06C0C0739CF00D9BA36 /* BSProtocolHandler.m */,
 			);
 			name = Chain;
 			sourceTree = "<group>";
@@ -277,7 +277,6 @@
 			files = (
 				8D11072D0486CEB800E47090 /* main.m in Sources */,
 				EC019E8E0BCE6E4B00C7915B /* BSApplicationController.m in Sources */,
-				EC019ED80BCE77EF00C7915B /* BSTrackSubmitter.m in Sources */,
 				EC019EE30BCE78C700C7915B /* BSITunesTrackListener.m in Sources */,
 				EC019F250BCE7DF000C7915B /* BSTrack.m in Sources */,
 				EC019FBA0BCE85AC00C7915B /* BSTrackFilter.m in Sources */,
@@ -287,6 +286,7 @@
 				EC8D81DF0BCFD10200DC50B8 /* CocoaCryptoHashing.m in Sources */,
 				EC7467430BE619FF00A25588 /* BSLoginWindowController.m in Sources */,
 				EC18BFBE0C07341900D9BA36 /* BSScrobbler.m in Sources */,
+				EC18C06D0C0739CF00D9BA36 /* BSProtocolHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
