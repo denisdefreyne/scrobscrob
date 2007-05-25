@@ -29,6 +29,7 @@
 #pragma mark -
 
 - (BOOL)isLoggedIn;
+- (NSString *)username;
 
 #pragma mark -
 

@@ -103,7 +103,16 @@
 
 - (IBAction)viewLastFmProfile:(id)sender
 {
-	;
+	NSString *username = [mScrobbler username];
+	
+	if(!username)
+		return;
+	
+	[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:
+		[NSString stringWithFormat:@"http://www.last.fm/user/%@",
+			[username stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]
+		]
+	]];
 }
 
 @end

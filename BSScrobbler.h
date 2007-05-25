@@ -21,6 +21,7 @@ extern NSString *BSQueueResumedNotificationName;
 }
 
 - (BOOL)isLoggedIn;
+- (NSString *)username;
 - (void)loginWithUsername:(NSString *)aUsername password:(NSString *)aPassword;
 
 - (BOOL)isPaused;
