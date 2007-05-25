@@ -17,6 +17,8 @@
 		EC019F250BCE7DF000C7915B /* BSTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = EC019F240BCE7DF000C7915B /* BSTrack.m */; };
 		EC019FBA0BCE85AC00C7915B /* BSTrackFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = EC019FB90BCE85AC00C7915B /* BSTrackFilter.m */; };
 		EC01A09C0BCEB47600C7915B /* NSTimer+Pausing.m in Sources */ = {isa = PBXBuildFile; fileRef = EC01A09B0BCEB47600C7915B /* NSTimer+Pausing.m */; };
+		EC0E22870BE730E200459978 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = EC0E22860BE730E200459978 /* Credits.rtf */; };
+		EC18BFBE0C07341900D9BA36 /* BSScrobbler.m in Sources */ = {isa = PBXBuildFile; fileRef = EC18BFBD0C07341900D9BA36 /* BSScrobbler.m */; };
 		EC7467430BE619FF00A25588 /* BSLoginWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC7467420BE619FF00A25588 /* BSLoginWindowController.m */; };
 		EC7467940BE61B8B00A25588 /* LoginWindow.nib in Resources */ = {isa = PBXBuildFile; fileRef = EC7467930BE61B8B00A25588 /* LoginWindow.nib */; };
 		EC8D7FF90BCFA2DA00DC50B8 /* BSTrackListener.m in Sources */ = {isa = PBXBuildFile; fileRef = EC8D7FF80BCFA2DA00DC50B8 /* BSTrackListener.m */; };
@@ -47,6 +49,9 @@
 		EC019FB90BCE85AC00C7915B /* BSTrackFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSTrackFilter.m; sourceTree = "<group>"; };
 		EC01A09A0BCEB47600C7915B /* NSTimer+Pausing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTimer+Pausing.h"; sourceTree = "<group>"; };
 		EC01A09B0BCEB47600C7915B /* NSTimer+Pausing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+Pausing.m"; sourceTree = "<group>"; };
+		EC0E22860BE730E200459978 /* Credits.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Credits.rtf; sourceTree = "<group>"; };
+		EC18BFBC0C07341900D9BA36 /* BSScrobbler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSScrobbler.h; sourceTree = "<group>"; };
+		EC18BFBD0C07341900D9BA36 /* BSScrobbler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSScrobbler.m; sourceTree = "<group>"; };
 		EC7467410BE619FF00A25588 /* BSLoginWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSLoginWindowController.h; sourceTree = "<group>"; };
 		EC7467420BE619FF00A25588 /* BSLoginWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSLoginWindowController.m; sourceTree = "<group>"; };
 		EC7467930BE61B8B00A25588 /* LoginWindow.nib */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; path = LoginWindow.nib; sourceTree = "<group>"; };
@@ -130,6 +135,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				EC0E22860BE730E200459978 /* Credits.rtf */,
 				8D1107310486CEB800E47090 /* Info.plist */,
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
 				29B97318FDCFA39411CA2CEA /* MainMenu.nib */,
@@ -150,6 +156,18 @@
 		EC01A0010BCE8A3500C7915B /* Processing */ = {
 			isa = PBXGroup;
 			children = (
+				EC019F230BCE7DF000C7915B /* BSTrack.h */,
+				EC019F240BCE7DF000C7915B /* BSTrack.m */,
+				EC18BFBC0C07341900D9BA36 /* BSScrobbler.h */,
+				EC18BFBD0C07341900D9BA36 /* BSScrobbler.m */,
+				EC18BFE80C07362000D9BA36 /* Chain */,
+			);
+			name = Processing;
+			sourceTree = "<group>";
+		};
+		EC18BFE80C07362000D9BA36 /* Chain */ = {
+			isa = PBXGroup;
+			children = (
 				EC8D7FF70BCFA2DA00DC50B8 /* BSTrackListener.h */,
 				EC8D7FF80BCFA2DA00DC50B8 /* BSTrackListener.m */,
 				EC8D7FFA0BCFA2E000DC50B8 /* Listeners */,
@@ -160,15 +178,13 @@
 				EC019ED60BCE77EF00C7915B /* BSTrackSubmitter.h */,
 				EC019ED70BCE77EF00C7915B /* BSTrackSubmitter.m */,
 			);
-			name = Processing;
+			name = Chain;
 			sourceTree = "<group>";
 		};
 		EC7467BD0BE61CF400A25588 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				EC01A0010BCE8A3500C7915B /* Processing */,
-				EC019F230BCE7DF000C7915B /* BSTrack.h */,
-				EC019F240BCE7DF000C7915B /* BSTrack.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -248,6 +264,7 @@
 				8D11072A0486CEB800E47090 /* MainMenu.nib in Resources */,
 				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
 				EC7467940BE61B8B00A25588 /* LoginWindow.nib in Resources */,
+				EC0E22870BE730E200459978 /* Credits.rtf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -269,6 +286,7 @@
 				EC8D807B0BCFA98500DC50B8 /* BSTrackQueue.m in Sources */,
 				EC8D81DF0BCFD10200DC50B8 /* CocoaCryptoHashing.m in Sources */,
 				EC7467430BE619FF00A25588 /* BSLoginWindowController.m in Sources */,
+				EC18BFBE0C07341900D9BA36 /* BSScrobbler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

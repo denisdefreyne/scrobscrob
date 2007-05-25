@@ -8,11 +8,7 @@
 #import "BSApplicationController.h"
 
 #import "BSLoginWindowController.h"
-#import "BSTrackListener.h"
-#import "BSITunesTrackListener.h"
-#import "BSTrackFilter.h"
-#import "BSTrackQueue.h"
-#import "BSTrackSubmitter.h"
+#import "BSScrobbler.h"
 
 
 @implementation BSApplicationController
@@ -21,34 +17,12 @@
 {
 	if(self = [super init])
 	{
-		// Create track listener
-		mTrackListener = [[BSITunesTrackListener alloc] init];
-		[mTrackListener start];
-		
-		// Create track filter
-		mTrackFilter = [[BSTrackFilter alloc] init];
-		[mTrackListener setTrackFilter:mTrackFilter];
-		
-		// Create track queue
-		mTrackQueue = [[BSTrackQueue alloc] init];
-		[mTrackFilter setTrackQueue:mTrackQueue];
-		
-		// Create track submitter
-		mTrackSubmitter = [[BSTrackSubmitter alloc] init];;
-		[mTrackQueue setTrackSubmitter:mTrackSubmitter];
-		[mTrackSubmitter setTrackQueue:mTrackQueue];
+		// Create scrobbler
+		mScrobbler = [[BSScrobbler alloc] init];
 		
 		// Setup notifications
-		[[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(queuePausedOrResumed:)
-                                                     name:BSQueueResumedNotificationName
-                                                   object:nil
-		];
-		[[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(queuePausedOrResumed:)
-                                                     name:BSQueuePausedNotificationName
-                                                   object:nil
-		];
+		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(queuePausedOrResumed:) name:BSQueueResumedNotificationName object:nil];
+		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(queuePausedOrResumed:) name:BSQueuePausedNotificationName object:nil];
 	}
 	
 	return self;
@@ -56,12 +30,7 @@
 
 - (void)dealloc
 {
-	[mTrackListener stop];
-	
-	[mTrackListener release];
-	[mTrackFilter release];
-	[mTrackQueue release];
-	[mTrackSubmitter release];
+	[mScrobbler release];
 	
 	[mMenu release];
 	[mStatusItem release];
@@ -89,7 +58,7 @@
 - (void)updateMenu
 {
 	// TODO localize
-	if([mTrackQueue isPaused])
+	if([mScrobbler isPaused])
 		[[mMenu itemAtIndex:0] setTitle:@"Start Scrobbling"];
 	else
 		[[mMenu itemAtIndex:0] setTitle:@"Stop Scrobbling"];
@@ -99,7 +68,7 @@
 
 - (void)loginWithUsername:(NSString *)aUsername password:(NSString *)aPassword
 {
-	[mTrackSubmitter loginWithUsername:aUsername password:aPassword];
+	[mScrobbler loginWithUsername:aUsername password:aPassword];
 }
 
 #pragma mark -
@@ -107,7 +76,7 @@
 - (IBAction)toggleScrobbling:(id)sender
 {
 	// Check whether we need to login first
-	if(![mTrackSubmitter isLoggedIn])
+	if(![mScrobbler isLoggedIn])
 	{
 		[mLoginWindowController showWindow:self];
 		[[mLoginWindowController window] center];
@@ -115,10 +84,10 @@
 		return;
 	}
 	
-	if([mTrackQueue isPaused])
-		[mTrackQueue resume];
+	if([mScrobbler isPaused])
+		[mScrobbler startScrobbling];
 	else
-		[mTrackQueue pause];
+		[mScrobbler stopScrobbling];
 }
 
 @end
