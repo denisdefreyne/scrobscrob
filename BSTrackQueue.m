@@ -49,7 +49,7 @@ NSString *BSQueueResumedNotificationName	= @"BS QueueResumed Notification";
 		return;
 	
 	// Submit tracks
-	[mTrackSubmitter submitTracks:aTracks];
+	[mProtocolHandler submitTracks:aTracks];
 	
 	// Disallow submitting
 	mMaySubmit = NO;
@@ -91,7 +91,7 @@ NSString *BSQueueResumedNotificationName	= @"BS QueueResumed Notification";
 
 - (void)dealloc
 {
-	[self setTrackSubmitter:nil];
+	[self setProtocolHandler:nil];
 	
 	[super dealloc];
 }
@@ -141,18 +141,18 @@ NSString *BSQueueResumedNotificationName	= @"BS QueueResumed Notification";
 
 #pragma mark -
 
-- (BSTrackSubmitter *)trackSubmitter
+- (BSProtocolHandler *)protocolHandler
 {
-	return mTrackSubmitter;
+	return mProtocolHandler;
 }
 
-- (void)setTrackSubmitter:(BSTrackSubmitter *)aTrackSubmitter
+- (void)setProtocolHandler:(BSProtocolHandler *)aProtocolHandler
 {
-	if(mTrackSubmitter == aTrackSubmitter)
+	if(mProtocolHandler == aProtocolHandler)
 		return;
 	
-	[mTrackSubmitter release];
-	mTrackSubmitter = [aTrackSubmitter retain];
+	[mProtocolHandler release];
+	mProtocolHandler = [aProtocolHandler retain];
 }
 
 @end

@@ -14,17 +14,17 @@
 extern NSString *BSQueuePausedNotificationName;
 extern NSString *BSQueueResumedNotificationName;
 
-@class BSTrackSubmitter, BSTrack;
+@class BSProtocolHandler, BSTrack;
 
 @interface BSTrackQueue : NSObject {
-	BSTrackSubmitter	*mTrackSubmitter;
+	BSProtocolHandler	*mProtocolHandler;
 	BOOL				mMaySubmit;
 	BOOL				mIsPaused;
 	NSMutableArray		*mQueuedTracks;
 }
 
-- (BSTrackSubmitter *)trackSubmitter;
-- (void)setTrackSubmitter:(BSTrackSubmitter *)aTrackSubmitter;
+- (BSProtocolHandler *)protocolHandler;
+- (void)setProtocolHandler:(BSProtocolHandler *)aProtocolHandler;
 
 #pragma mark -
 

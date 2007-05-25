@@ -33,9 +33,9 @@
 		[mTrackFilter setTrackQueue:mTrackQueue];
 		
 		// Create track submitter
-		mTrackSubmitter = [[BSTrackSubmitter alloc] init];;
-		[mTrackQueue setTrackSubmitter:mTrackSubmitter];
-		[mTrackSubmitter setTrackQueue:mTrackQueue];
+		mProtocolHandler = [[BSProtocolHandler alloc] init];;
+		[mTrackQueue setProtocolHandler:mProtocolHandler];
+		[mProtocolHandler setTrackQueue:mTrackQueue];
 	}
 	
 	return self;
@@ -48,7 +48,7 @@
 	[mTrackListener release];
 	[mTrackFilter release];
 	[mTrackQueue release];
-	[mTrackSubmitter release];
+	[mProtocolHandler release];
 	
 	[super dealloc];
 }
@@ -57,12 +57,12 @@
 
 - (BOOL)isLoggedIn
 {
-	return [mTrackSubmitter isLoggedIn];
+	return [mProtocolHandler isLoggedIn];
 }
 
 - (void)loginWithUsername:(NSString *)aUsername password:(NSString *)aPassword
 {
-	[mTrackSubmitter loginWithUsername:aUsername password:aPassword];
+	[mProtocolHandler loginWithUsername:aUsername password:aPassword];
 }
 
 - (BOOL)isPaused
@@ -73,7 +73,7 @@
 - (void)startScrobbling
 {
 	// Check whether we need to login first
-	if(![mTrackSubmitter isLoggedIn])
+	if(![mProtocolHandler isLoggedIn])
 		return;
 	
 	// Check whether we're already scrobbling
