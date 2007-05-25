@@ -21,8 +21,10 @@
 		mScrobbler = [[BSScrobbler alloc] init];
 		
 		// Setup notifications
-		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(queuePausedOrResumed:) name:BSQueueResumedNotificationName object:nil];
-		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(queuePausedOrResumed:) name:BSQueuePausedNotificationName object:nil];
+		[[NSNotificationCenter defaultCenter]
+			addObserver:self selector:@selector(queuePausedOrResumed:) name:BSQueueResumedNotificationName object:nil];
+		[[NSNotificationCenter defaultCenter]
+			addObserver:self selector:@selector(queuePausedOrResumed:) name:BSQueuePausedNotificationName object:nil];
 	}
 	
 	return self;
@@ -41,7 +43,7 @@
 - (void)awakeFromNib
 {
 	mStatusItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength] retain];
-	[mStatusItem setTitle:@"ScrobScrob"];
+	[mStatusItem setTitle:[NSString stringWithUTF8String:"\xE2\x99\xAC"]]; // ♬ = 0xE299AC (UTF-8)
 	[mStatusItem setHighlightMode:YES];
 	[mStatusItem setMenu:mMenu];
 	
@@ -57,11 +59,10 @@
 
 - (void)updateMenu
 {
-	// TODO localize
 	if([mScrobbler isPaused])
-		[[mMenu itemAtIndex:0] setTitle:@"Start Scrobbling"];
+		[[mMenu itemAtIndex:0] setTitle:NSLocalizedString(@"Start Scrobbling", @"start scrobbling menu item title")];
 	else
-		[[mMenu itemAtIndex:0] setTitle:@"Stop Scrobbling"];
+		[[mMenu itemAtIndex:0] setTitle:NSLocalizedString(@"Stop Scrobbling", @"stop scrobbling menu item title")];
 }
 
 #pragma mark -
@@ -88,6 +89,21 @@
 		[mScrobbler startScrobbling];
 	else
 		[mScrobbler stopScrobbling];
+}
+
+- (IBAction)visitScrobScrobSite:(id)sender
+{
+	[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://scrobscrob.stoneship.org/"]];
+}
+
+- (IBAction)viewLastFmDashboard:(id)sender
+{
+	[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://www.last.fm/dashboard/"]];
+}
+
+- (IBAction)viewLastFmProfile:(id)sender
+{
+	;
 }
 
 @end
