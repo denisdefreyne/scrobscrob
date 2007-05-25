@@ -8,7 +8,10 @@
 #import <Cocoa/Cocoa.h>
 
 
-// A track submitter logs in and submits tracks immediately.
+// A protocol handler logs in and submits tracks
+
+extern NSString *BSAuthenticationFailedNotificationName;
+extern NSString *BSNetworkErrorReceivedNotificationName;
 
 @class BSTrackQueue, BSTrack;
 

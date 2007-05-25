@@ -22,9 +22,13 @@
 		
 		// Setup notifications
 		[[NSNotificationCenter defaultCenter]
-			addObserver:self selector:@selector(queuePausedOrResumed:) name:BSQueueResumedNotificationName object:nil];
+			addObserver:self selector:@selector(queueResumed:) name:BSQueueResumedNotificationName object:nil];
 		[[NSNotificationCenter defaultCenter]
-			addObserver:self selector:@selector(queuePausedOrResumed:) name:BSQueuePausedNotificationName object:nil];
+			addObserver:self selector:@selector(queuePaused:) name:BSQueuePausedNotificationName object:nil];
+		[[NSNotificationCenter defaultCenter]
+			addObserver:self selector:@selector(authenticationFailed:) name:BSAuthenticationFailedNotificationName object:nil];
+		[[NSNotificationCenter defaultCenter]
+			addObserver:self selector:@selector(networkErrorReceived:) name:BSNetworkErrorReceivedNotificationName object:nil];
 	}
 	
 	return self;
@@ -52,9 +56,24 @@
 
 #pragma mark -
 
-- (void)queuePausedOrResumed:(NSNotification *)aNotification
+- (void)queueResumed:(NSNotification *)aNotification
 {
 	[self updateMenu];
+}
+
+- (void)queuePaused:(NSNotification *)aNotification
+{
+	[self updateMenu];
+}
+
+- (void)authenticationFailed:(NSNotification *)aNotification
+{
+	NSLog(@"*$&@&$&#$#!!! Authentication failed! Argh!");
+}
+
+- (void)networkErrorReceived:(NSNotification *)aNotification
+{
+	NSLog(@"$*($)(%#@!!!! Network error!");
 }
 
 - (void)updateMenu

@@ -11,6 +11,9 @@
 extern NSString *BSQueuePausedNotificationName;
 extern NSString *BSQueueResumedNotificationName;
 
+extern NSString *BSAuthenticationFailedNotificationName;
+extern NSString *BSNetworkErrorReceivedNotificationName;
+
 @class BSTrackListener, BSTrackFilter, BSTrackQueue, BSProtocolHandler;
 
 @interface BSScrobbler : NSObject {
