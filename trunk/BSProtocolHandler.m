@@ -5,7 +5,7 @@
 //	Copyright 2007 Denis Defreyne. All rights reserved.
 //
 
-#import "BSTrackSubmitter.h"
+#import "BSProtocolHandler.h"
 
 #import "CocoaCryptoHashing.h"
 #import "BSTrackQueue.h"

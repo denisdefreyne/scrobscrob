@@ -12,7 +12,7 @@
 #import "BSITunesTrackListener.h"
 #import "BSTrackFilter.h"
 #import "BSTrackQueue.h"
-#import "BSTrackSubmitter.h"
+#import "BSProtocolHandler.h"
 
 @implementation BSScrobbler
 
