@@ -18,10 +18,16 @@ NSString *kClientVersion	= @"1.0";
 NSString *kHandshakeAction	= @"BS Handshake Action";
 NSString *kSubmitAction		= @"BS Submit Action";
 
+NSString *BSAuthenticationFailedNotificationName	= @"BS AuthenticationFailed Notification";
+NSString *BSNetworkErrorReceivedNotificationName	= @"BS NetworkErrorReceived Notification";
+
 @interface BSProtocolHandler (Private)
 
 - (NSMutableData *)data;
 - (void)setData:(NSMutableData *)aData;
+
+- (void)notifyAuthenticationFailure;
+- (void)notifyNetworkError;
 
 - (NSString *)stringForTracks:(NSArray *)aTracks;
 
@@ -60,6 +66,18 @@ NSString *kSubmitAction		= @"BS Submit Action";
 	
 	[mData release];
 	mData = [aData retain];
+}
+
+#pragma mark -
+
+- (void)notifyAuthenticationFailure
+{
+	[[NSNotificationCenter defaultCenter] postNotificationName:BSAuthenticationFailedNotificationName object:nil];
+}
+
+- (void)notifyNetworkError
+{
+	[[NSNotificationCenter defaultCenter] postNotificationName:BSNetworkErrorReceivedNotificationName object:nil];
 }
 
 #pragma mark -
@@ -126,7 +144,6 @@ NSString *kSubmitAction		= @"BS Submit Action";
 {
 	// Convert data to string
 	NSString *string = [[[NSString alloc] initWithData:mData encoding:NSUTF8StringEncoding] autorelease];
-	NSLog(@"Received data:\n==========\n%@\n==========", string);
 	
 	// Check action
 	if(mAction == kHandshakeAction)
@@ -134,12 +151,12 @@ NSString *kSubmitAction		= @"BS Submit Action";
 	else if(mAction == kSubmitAction)
 		[self handleSubmitResponse:string];
 	else
-		NSLog(@"!!! ERROR: Unknown action.");
+		[self notifyNetworkError];
 }
 
 - (void)connection:(NSURLConnection *)aConnection didFailWithError:(NSError *)aError
 {
-	NSLog(@"!!! ERROR: %@ %@", [aError localizedDescription], [[aError userInfo] objectForKey:NSErrorFailingURLStringKey]);
+	[self notifyNetworkError];
 }
 
 - (void)handleHandshakeResponse:(NSString *)aResponse
@@ -148,7 +165,7 @@ NSString *kSubmitAction		= @"BS Submit Action";
 	NSArray *components = [aResponse componentsSeparatedByString:@"\n"];
 	if([components count] != 5 && [components count] != 3)
 	{
-		NSLog(@"!!! ERROR: Malformatted handshake response: %@", aResponse);
+		[self notifyNetworkError];
 		return;
 	}
 	
@@ -168,16 +185,16 @@ NSString *kSubmitAction		= @"BS Submit Action";
 		
 		if([firstComponent length] <= 7)
 		{
-			NSLog(@"!!! ERROR: (unknown: %@)", [components objectAtIndex:0]);
+			[self notifyNetworkError];
 			return;
 		}
 		
 		if([[firstComponent substringToIndex:5] isEqualToString:@"FAILED"])
-			NSLog(@"!!! ERROR: FAILED: %@", [[components objectAtIndex:0] substringFromIndex:7]);
+			[self notifyNetworkError];
 		else if([[firstComponent substringToIndex:7] isEqualToString:@"BADUSER"])
-			NSLog(@"!!! ERROR: BADUSER");
+			[self notifyAuthenticationFailure];
 		else
-			NSLog(@"!!! ERROR: (unknown: %@)", [components objectAtIndex:0]);
+			[self notifyNetworkError];
 		return;
 	}
 	
@@ -219,12 +236,11 @@ NSString *kSubmitAction		= @"BS Submit Action";
 	NSArray *components = [aResponse componentsSeparatedByString:@"\n"];
 	if([components count] != 3)
 	{
-		NSLog(@"!!! ERROR: Malformatted handshake response: %@", aResponse);
+		[self notifyNetworkError];
 		return;
 	}
 	
 	NSString *firstComponent = [components objectAtIndex:0];
-	NSLog(@">>> %@ <<<", firstComponent);
 	
 	// Check whether we have an error condition
 	if(![firstComponent isEqualToString:@"OK"])
@@ -239,19 +255,16 @@ NSString *kSubmitAction		= @"BS Submit Action";
 		
 		if([firstComponent length] <= 7)
 		{
-			NSLog(@"!!! ERROR: (unknown: %@)", [components objectAtIndex:0]);
+			[self notifyNetworkError];
 			return;
 		}
 		
 		if([[firstComponent substringToIndex:5] isEqualToString:@"FAILED"])
-			NSLog(@"!!! ERROR: FAILED: %@", [[components objectAtIndex:0] substringFromIndex:7]);
-		else if([[firstComponent substringToIndex:7] isEqualToString:@"BADUSER"])
-			NSLog(@"!!! ERROR: BADUSER");
+			[self notifyNetworkError];
+		else if([[firstComponent substringToIndex:7] isEqualToString:@"BADAUTH"])
+			[self notifyAuthenticationFailure];
 		else
-			NSLog(@"!!! ERROR: (unknown: %@)", [components objectAtIndex:0]);
-		return;
-		
-		NSLog(@"!!! WARNING: Error condition: %@", aResponse);
+			[self notifyNetworkError];
 		return;
 	}
 	
@@ -383,8 +396,7 @@ NSString *kSubmitAction		= @"BS Submit Action";
 	NSURLConnection	*connection	= [[NSURLConnection alloc] initWithRequest:request delegate:self];
 	if(!connection)
 	{
-		// Error!
-		NSLog(@"!!! ERROR: could not create connection");
+		[self notifyNetworkError];
 		return;
 	}
 }
@@ -412,8 +424,7 @@ NSString *kSubmitAction		= @"BS Submit Action";
 	NSURLConnection	*connection	= [[NSURLConnection alloc] initWithRequest:request delegate:self];
 	if(!connection)
 	{
-		// Error!
-		NSLog(@"!!! ERROR: could not create connection");
+		[self notifyNetworkError];
 		return;
 	}
 }
