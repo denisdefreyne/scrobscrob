@@ -1,7 +1,12 @@
 {
     IBClasses = (
         {
-            ACTIONS = {login = id; toggleScrobbling = id; }; 
+            ACTIONS = {
+                toggleScrobbling = id; 
+                viewLastFmDashboard = id; 
+                viewLastFmProfile = id; 
+                visitScrobScrobSite = id; 
+            }; 
             CLASS = BSApplicationController; 
             LANGUAGE = ObjC; 
             OUTLETS = {mLoginWindowController = BSLoginWindowController; mMenu = NSMenu; }; 

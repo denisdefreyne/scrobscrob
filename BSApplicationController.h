@@ -30,4 +30,9 @@
 
 - (IBAction)toggleScrobbling:(id)sender;
 
+- (IBAction)visitScrobScrobSite:(id)sender;
+
+- (IBAction)viewLastFmDashboard:(id)sender;
+- (IBAction)viewLastFmProfile:(id)sender;
+
 @end
