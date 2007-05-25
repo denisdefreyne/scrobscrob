@@ -11,13 +11,13 @@
 extern NSString *BSQueuePausedNotificationName;
 extern NSString *BSQueueResumedNotificationName;
 
-@class BSTrackListener, BSTrackFilter, BSTrackQueue, BSTrackSubmitter;
+@class BSTrackListener, BSTrackFilter, BSTrackQueue, BSProtocolHandler;
 
 @interface BSScrobbler : NSObject {
 	BSTrackListener		*mTrackListener;
 	BSTrackFilter		*mTrackFilter;
 	BSTrackQueue		*mTrackQueue;
-	BSTrackSubmitter	*mTrackSubmitter;
+	BSProtocolHandler	*mProtocolHandler;
 }
 
 - (BOOL)isLoggedIn;

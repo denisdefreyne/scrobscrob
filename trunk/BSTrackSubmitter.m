@@ -1,5 +1,5 @@
 //
-//	BSTrackSubmitter.m
+//	BSProtocolHandler.m
 //	ScrobScrob
 //
 //	Copyright 2007 Denis Defreyne. All rights reserved.
@@ -18,7 +18,7 @@ NSString *kClientVersion	= @"1.0";
 NSString *kHandshakeAction	= @"BS Handshake Action";
 NSString *kSubmitAction		= @"BS Submit Action";
 
-@interface BSTrackSubmitter (Private)
+@interface BSProtocolHandler (Private)
 
 - (NSMutableData *)data;
 - (void)setData:(NSMutableData *)aData;
@@ -46,7 +46,7 @@ NSString *kSubmitAction		= @"BS Submit Action";
 
 #pragma mark -
 
-@implementation BSTrackSubmitter (Private)
+@implementation BSProtocolHandler (Private)
 
 - (NSMutableData *)data
 {
@@ -330,7 +330,7 @@ NSString *kSubmitAction		= @"BS Submit Action";
 
 @end
 
-@implementation BSTrackSubmitter
+@implementation BSProtocolHandler
 
 - (id)init
 {

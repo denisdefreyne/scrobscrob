@@ -12,7 +12,7 @@
 
 @class BSTrackQueue, BSTrack;
 
-@interface BSTrackSubmitter : NSObject {
+@interface BSProtocolHandler : NSObject {
 	NSMutableData	*mData;
 	BSTrackQueue	*mTrackQueue;
 	BOOL			mIsLoggedIn;
