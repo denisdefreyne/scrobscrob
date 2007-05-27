@@ -282,12 +282,6 @@ NSString *BSNetworkErrorReceivedNotificationName			= @"BS NetworkErrorReceived N
 		// INTERVAL <n>
 		// --------------------
 		
-		if([firstComponent length] <= 7)
-		{
-			[self notifyNetworkError];
-			return;
-		}
-		
 		if([firstComponent hasPrefix:@"FAILED"])
 			[self notifyNetworkError];
 		else if([firstComponent hasPrefix:@"BADAUTH"])

@@ -70,16 +70,36 @@
 
 - (void)userAuthenticationFailed:(NSNotification *)aNotification
 {
-	NSLog(@"ERROR! User authentication failed! Argh!");
+	// TODO localize
+	NSAlert *alert = [[[NSAlert alloc] init] autorelease];
+	[alert setMessageText:@"Login failed: incorrect username"];
+	[alert setInformativeText:@"The username you specified appears to be incorrect. Do you want to re-enter your username and password?"];
+	[alert addButtonWithTitle:@"Re-enter username"];
+	[alert addButtonWithTitle:@"Cancel"];
+	[alert runModal];
 }
 
 - (void)passwordAuthenticationFailed:(NSNotification *)aNotification
 {
-	NSLog(@"ERROR! Password authentication failed! Argh!");
+	// TODO localize
+	NSAlert *alert = [[[NSAlert alloc] init] autorelease];
+	[alert setMessageText:@"Login failed: incorrect password"];
+	[alert setInformativeText:@"The password you specified appears to be incorrect. Do you want to re-enter your username and password?"];
+	[alert addButtonWithTitle:@"Re-enter password"];
+	[alert addButtonWithTitle:@"Cancel"];
+	[alert runModal];
 }
 
 - (void)networkErrorReceived:(NSNotification *)aNotification
 {
+	[[NSAlert
+		alertWithMessageText:@"noob"
+		defaultButton:@"Darn"
+		alternateButton:nil
+		otherButton:nil
+		informativeTextWithFormat:@"Why can't you do anything right???"
+	] runModal];
+	
 	NSLog(@"ERROR! Network error!");
 }
 
