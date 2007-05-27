@@ -70,17 +70,17 @@
 
 - (void)userAuthenticationFailed:(NSNotification *)aNotification
 {
-	NSLog(@"*$&@&$&#$#!!! User authentication failed! Argh!");
+	NSLog(@"ERROR! User authentication failed! Argh!");
 }
 
 - (void)passwordAuthenticationFailed:(NSNotification *)aNotification
 {
-	NSLog(@"*$&@&$&#$#!!! Password authentication failed! Argh!");
+	NSLog(@"ERROR! Password authentication failed! Argh!");
 }
 
 - (void)networkErrorReceived:(NSNotification *)aNotification
 {
-	NSLog(@"$*($)(%#@!!!! Network error!");
+	NSLog(@"ERROR! Network error!");
 }
 
 - (void)updateMenu
