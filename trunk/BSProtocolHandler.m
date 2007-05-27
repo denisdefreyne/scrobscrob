@@ -149,7 +149,7 @@ NSString *BSNetworkErrorReceivedNotificationName			= @"BS NetworkErrorReceived N
 {
 	// Convert data to string
 	NSString *string = [[[NSString alloc] initWithData:mData encoding:NSUTF8StringEncoding] autorelease];
-	NSLog(@"*** RECEIVED DATA:\n==========\n%@\n==========", string);
+//	NSLog(@"*** RECEIVED DATA:\n==========\n%@\n==========", string);
 	
 	// Check action
 	if(mAction == kHandshakeAction)
@@ -171,7 +171,6 @@ NSString *BSNetworkErrorReceivedNotificationName			= @"BS NetworkErrorReceived N
 {
 	// Split string
 	NSArray *components = [aResponse componentsSeparatedByString:@"\n"];
-	NSLog(@"Components = %@", components);
 	
 	// Filter array
 	NSMutableArray	*filteredComponents = [[[NSMutableArray alloc] init] autorelease];
@@ -184,7 +183,7 @@ NSString *BSNetworkErrorReceivedNotificationName			= @"BS NetworkErrorReceived N
 		if([trimmedString length] != 0)
 			[filteredComponents addObject:trimmedString];
 	}
-	NSLog(@"Filtered components = %@", filteredComponents);
+	NSLog(@"[PH] Response: %@", filteredComponents);
 	
 	return filteredComponents;
 }
@@ -251,7 +250,7 @@ NSString *BSNetworkErrorReceivedNotificationName			= @"BS NetworkErrorReceived N
 	// Notify track queue
 	[mTrackQueue submitIntervalReceived:[NSNumber numberWithDouble:interval]];
 	
-	NSLog(@"Logged in.");
+	NSLog(@"[PH] Logged in.");
 	[mTrackQueue resume];
 	mIsLoggedIn = YES;
 }
@@ -264,7 +263,11 @@ NSString *BSNetworkErrorReceivedNotificationName			= @"BS NetworkErrorReceived N
 	// Check
 	if([components count] != 2)
 	{
+		[mTrackQueue queueOrSubmitTracks:mTracks];
+		[mTracks removeAllObjects];
+		
 		[self notifyNetworkError];
+		
 		return;
 	}
 	
@@ -282,12 +285,16 @@ NSString *BSNetworkErrorReceivedNotificationName			= @"BS NetworkErrorReceived N
 		// INTERVAL <n>
 		// --------------------
 		
+		[mTrackQueue queueOrSubmitTracks:mTracks];
+		[mTracks removeAllObjects];
+		
 		if([firstComponent hasPrefix:@"FAILED"])
 			[self notifyNetworkError];
 		else if([firstComponent hasPrefix:@"BADAUTH"])
 			[self notifyPasswordAuthenticationFailure];
 		else
 			[self notifyNetworkError];
+		
 		return;
 	}
 	
@@ -296,13 +303,22 @@ NSString *BSNetworkErrorReceivedNotificationName			= @"BS NetworkErrorReceived N
 	// INTERVAL <n>
 	// --------------------
 	
-	// TODO Check whether the response is in the correct format
-	;
+	// Check whether the response is in the correct format
+	if(![[components objectAtIndex:1] hasPrefix:@"INTERVAL "])
+	{
+		[mTrackQueue queueOrSubmitTracks:mTracks];
+		[mTracks removeAllObjects];
+		
+		[self notifyNetworkError];
+		
+		return;
+	}
 	
 	// Extract interval
 	double interval = (double)[[[components objectAtIndex:1] substringFromIndex:9] intValue];
 	
 	// Notify track queue
+	[mTracks removeAllObjects];
 	[mTrackQueue submitIntervalReceived:[NSNumber numberWithDouble:interval]];
 }
 
@@ -373,6 +389,7 @@ NSString *BSNetworkErrorReceivedNotificationName			= @"BS NetworkErrorReceived N
 	if(self = [super init])
 	{
 		mIsLoggedIn = NO;
+		mTracks = [[NSMutableArray alloc] init];
 	}
 	
 	return self;
@@ -382,6 +399,7 @@ NSString *BSNetworkErrorReceivedNotificationName			= @"BS NetworkErrorReceived N
 {
 	[self setData:nil];
 	[self setTrackQueue:nil];
+	[mTracks release];
 	
 	[super dealloc];
 }
@@ -406,8 +424,6 @@ NSString *BSNetworkErrorReceivedNotificationName			= @"BS NetworkErrorReceived N
 	NSString		*urlString	= [NSString stringWithFormat:@"http://post.audioscrobbler.com/?hs=true&p=1.1&c=%@&v=%@&u=%@", kClientID, kClientVersion, aUsername];
 	NSURLRequest	*request	= [NSURLRequest requestWithURL:[NSURL URLWithString:urlString]];
 	
-	NSLog(@"Logging in.");
-	
 	// Set action
 	mAction = kHandshakeAction;
 	
@@ -426,7 +442,8 @@ NSString *BSNetworkErrorReceivedNotificationName			= @"BS NetworkErrorReceived N
 
 - (void)submitTracks:(NSArray *)aTracks
 {
-	NSLog(@"Submitting tracks: %@", aTracks);
+	// Store tracks
+	[mTracks addObjectsFromArray:aTracks];
 	
 	// Convert tracks into data
 	NSString *string = [self stringForTracks:aTracks];
