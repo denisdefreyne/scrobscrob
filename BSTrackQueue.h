@@ -33,6 +33,10 @@ extern NSString *BSQueueResumedNotificationName;
 
 #pragma mark -
 
+- (void)queueOrSubmitTracks:(NSArray *)aTracks;
+
+#pragma mark -
+
 - (void)pause;
 - (void)resume;
 

@@ -25,6 +25,7 @@ extern NSString *BSNetworkErrorReceivedNotificationName;
 	NSString		*mSingleHashedPassword;
 	NSString		*mDoubleHashedPassword;
 	NSURL			*mSubmitURL;
+	NSMutableArray	*mTracks;
 }
 
 - (void)loginWithUsername:(NSString *)aUsername password:(NSString *)aPassword;
