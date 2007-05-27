@@ -2,6 +2,7 @@
     IBClasses = (
         {
             ACTIONS = {
+                showAboutPanel = id; 
                 toggleScrobbling = id; 
                 viewLastFmDashboard = id; 
                 viewLastFmProfile = id; 

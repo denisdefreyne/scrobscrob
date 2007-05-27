@@ -28,6 +28,8 @@
 
 #pragma mark -
 
+- (IBAction)showAboutPanel:(id)sender;
+
 - (IBAction)toggleScrobbling:(id)sender;
 
 - (IBAction)visitScrobScrobSite:(id)sender;

@@ -93,11 +93,18 @@
 
 #pragma mark -
 
+- (IBAction)showAboutPanel:(id)sender
+{
+	[NSApp activateIgnoringOtherApps:YES];
+	[NSApp orderFrontStandardAboutPanel:self];
+}
+
 - (IBAction)toggleScrobbling:(id)sender
 {
 	// Check whether we need to login first
 	if(![mScrobbler isLoggedIn])
 	{
+		[NSApp activateIgnoringOtherApps:YES];
 		[mLoginWindowController showWindow:self];
 		[[mLoginWindowController window] center];
 		[[mLoginWindowController window] makeKeyAndOrderFront:self];
