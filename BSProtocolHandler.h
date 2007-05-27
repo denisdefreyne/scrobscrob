@@ -10,7 +10,8 @@
 
 // A protocol handler logs in and submits tracks
 
-extern NSString *BSAuthenticationFailedNotificationName;
+extern NSString *BSUserAuthenticationFailedNotificationName;
+extern NSString *BSPasswordAuthenticationFailedNotificationName;
 extern NSString *BSNetworkErrorReceivedNotificationName;
 
 @class BSTrackQueue, BSTrack;

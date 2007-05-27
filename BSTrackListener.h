@@ -17,8 +17,8 @@
 	BSTrackFilter	*mTrackFilter;
 }
 
-- (void)start;
-- (void)stop;
+- (void)start; // override this method when subclassing
+- (void)stop;  // override this method when subclassing
 
 #pragma mark -
 
