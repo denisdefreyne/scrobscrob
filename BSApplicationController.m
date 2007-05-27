@@ -76,7 +76,23 @@
 	[alert setInformativeText:@"The username you specified appears to be incorrect. Do you want to re-enter your username and password?"];
 	[alert addButtonWithTitle:@"Re-enter username"];
 	[alert addButtonWithTitle:@"Cancel"];
-	[alert runModal];
+	
+	[NSApp activateIgnoringOtherApps:YES];
+	int alertReturn = [alert runModal];
+	
+	if(NSAlertFirstButtonReturn == alertReturn)
+	{
+		NSLog(@"Showing login window again.");
+		
+		[NSApp activateIgnoringOtherApps:YES];
+		[mLoginWindowController showWindow:self];
+		[[mLoginWindowController window] center];
+		[[mLoginWindowController window] makeKeyAndOrderFront:self];
+	}
+	else
+	{
+		NSLog(@"Canceling.");
+	}
 }
 
 - (void)passwordAuthenticationFailed:(NSNotification *)aNotification
@@ -87,18 +103,28 @@
 	[alert setInformativeText:@"The password you specified appears to be incorrect. Do you want to re-enter your username and password?"];
 	[alert addButtonWithTitle:@"Re-enter password"];
 	[alert addButtonWithTitle:@"Cancel"];
-	[alert runModal];
+	
+	[NSApp activateIgnoringOtherApps:YES];
+	int alertReturn = [alert runModal];
+	
+	if(NSAlertFirstButtonReturn == alertReturn)
+	{
+		NSLog(@"Showing login window again.");
+		
+		[NSApp activateIgnoringOtherApps:YES];
+		[mLoginWindowController showWindow:self];
+		[[mLoginWindowController window] center];
+		[[mLoginWindowController window] makeKeyAndOrderFront:self];
+	}
+	else
+	{
+		NSLog(@"Canceling.");
+	}
 }
 
 - (void)networkErrorReceived:(NSNotification *)aNotification
 {
-	[[NSAlert
-		alertWithMessageText:@"noob"
-		defaultButton:@"Darn"
-		alternateButton:nil
-		otherButton:nil
-		informativeTextWithFormat:@"Why can't you do anything right???"
-	] runModal];
+	;
 	
 	NSLog(@"ERROR! Network error!");
 }
