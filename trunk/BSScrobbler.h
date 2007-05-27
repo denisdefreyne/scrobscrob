@@ -11,7 +11,8 @@
 extern NSString *BSQueuePausedNotificationName;
 extern NSString *BSQueueResumedNotificationName;
 
-extern NSString *BSAuthenticationFailedNotificationName;
+extern NSString *BSUserAuthenticationFailedNotificationName;
+extern NSString *BSPasswordAuthenticationFailedNotificationName;
 extern NSString *BSNetworkErrorReceivedNotificationName;
 
 @class BSTrackListener, BSTrackFilter, BSTrackQueue, BSProtocolHandler;

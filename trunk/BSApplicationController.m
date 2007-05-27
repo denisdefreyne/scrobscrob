@@ -26,7 +26,9 @@
 		[[NSNotificationCenter defaultCenter]
 			addObserver:self selector:@selector(queuePaused:) name:BSQueuePausedNotificationName object:nil];
 		[[NSNotificationCenter defaultCenter]
-			addObserver:self selector:@selector(authenticationFailed:) name:BSAuthenticationFailedNotificationName object:nil];
+			addObserver:self selector:@selector(userAuthenticationFailed:) name:BSUserAuthenticationFailedNotificationName object:nil];
+		[[NSNotificationCenter defaultCenter]
+			addObserver:self selector:@selector(passwordAuthenticationFailed:) name:BSPasswordAuthenticationFailedNotificationName object:nil];
 		[[NSNotificationCenter defaultCenter]
 			addObserver:self selector:@selector(networkErrorReceived:) name:BSNetworkErrorReceivedNotificationName object:nil];
 	}
@@ -66,9 +68,14 @@
 	[self updateMenu];
 }
 
-- (void)authenticationFailed:(NSNotification *)aNotification
+- (void)userAuthenticationFailed:(NSNotification *)aNotification
 {
-	NSLog(@"*$&@&$&#$#!!! Authentication failed! Argh!");
+	NSLog(@"*$&@&$&#$#!!! User authentication failed! Argh!");
+}
+
+- (void)passwordAuthenticationFailed:(NSNotification *)aNotification
+{
+	NSLog(@"*$&@&$&#$#!!! Password authentication failed! Argh!");
 }
 
 - (void)networkErrorReceived:(NSNotification *)aNotification

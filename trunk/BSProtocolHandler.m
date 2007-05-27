@@ -18,15 +18,17 @@ NSString *kClientVersion	= @"1.0";
 NSString *kHandshakeAction	= @"BS Handshake Action";
 NSString *kSubmitAction		= @"BS Submit Action";
 
-NSString *BSAuthenticationFailedNotificationName	= @"BS AuthenticationFailed Notification";
-NSString *BSNetworkErrorReceivedNotificationName	= @"BS NetworkErrorReceived Notification";
+NSString *BSUserAuthenticationFailedNotificationName		= @"BS UserAuthenticationFailed Notification";
+NSString *BSPasswordAuthenticationFailedNotificationName	= @"BS PasswordAuthenticationFailed Notification";
+NSString *BSNetworkErrorReceivedNotificationName			= @"BS NetworkErrorReceived Notification";
 
 @interface BSProtocolHandler (Private)
 
 - (NSMutableData *)data;
 - (void)setData:(NSMutableData *)aData;
 
-- (void)notifyAuthenticationFailure;
+- (void)notifyUserAuthenticationFailure;
+- (void)notifyPasswordAuthenticationFailure;
 - (void)notifyNetworkError;
 
 - (NSString *)stringForTracks:(NSArray *)aTracks;
@@ -50,8 +52,6 @@ NSString *BSNetworkErrorReceivedNotificationName	= @"BS NetworkErrorReceived Not
 
 @end
 
-#pragma mark -
-
 @implementation BSProtocolHandler (Private)
 
 - (NSMutableData *)data
@@ -70,9 +70,14 @@ NSString *BSNetworkErrorReceivedNotificationName	= @"BS NetworkErrorReceived Not
 
 #pragma mark -
 
-- (void)notifyAuthenticationFailure
+- (void)notifyUserAuthenticationFailure
 {
-	[[NSNotificationCenter defaultCenter] postNotificationName:BSAuthenticationFailedNotificationName object:nil];
+	[[NSNotificationCenter defaultCenter] postNotificationName:BSUserAuthenticationFailedNotificationName object:nil];
+}
+
+- (void)notifyPasswordAuthenticationFailure
+{
+	[[NSNotificationCenter defaultCenter] postNotificationName:BSPasswordAuthenticationFailedNotificationName object:nil];
 }
 
 - (void)notifyNetworkError
@@ -144,6 +149,7 @@ NSString *BSNetworkErrorReceivedNotificationName	= @"BS NetworkErrorReceived Not
 {
 	// Convert data to string
 	NSString *string = [[[NSString alloc] initWithData:mData encoding:NSUTF8StringEncoding] autorelease];
+	NSLog(@"*** RECEIVED DATA:\n==========\n%@\n==========", string);
 	
 	// Check action
 	if(mAction == kHandshakeAction)
@@ -159,21 +165,47 @@ NSString *BSNetworkErrorReceivedNotificationName	= @"BS NetworkErrorReceived Not
 	[self notifyNetworkError];
 }
 
+#pragma mark -
+
+- (NSArray *)componentsForResponse:(NSString *)aResponse
+{
+	// Split string
+	NSArray *components = [aResponse componentsSeparatedByString:@"\n"];
+	NSLog(@"Components = %@", components);
+	
+	// Filter array
+	NSMutableArray	*filteredComponents = [[[NSMutableArray alloc] init] autorelease];
+	NSEnumerator	*enumerator = [components objectEnumerator];
+	NSCharacterSet	*blankCharacterSet = [NSCharacterSet characterSetWithCharactersInString:@"\n\r \t"];
+	NSString		*string;
+	while(string = [enumerator nextObject])
+	{
+		NSString *trimmedString = [string stringByTrimmingCharactersInSet:blankCharacterSet];
+		if([trimmedString length] != 0)
+			[filteredComponents addObject:trimmedString];
+	}
+	NSLog(@"Filtered components = %@", filteredComponents);
+	
+	return filteredComponents;
+}
+
 - (void)handleHandshakeResponse:(NSString *)aResponse
 {
-	// Split string and do a small check
-	NSArray *components = [aResponse componentsSeparatedByString:@"\n"];
-	if([components count] != 5 && [components count] != 3)
+	// Split response
+	NSArray *components = [self componentsForResponse:aResponse];
+	
+	// Check
+	if([components count] != 4 && [components count] != 2)
 	{
 		[self notifyNetworkError];
 		return;
 	}
 	
+	// Get first component
 	NSString *firstComponent = [components objectAtIndex:0];
-	NSLog(@">>> %@ <<<", firstComponent);
 	
 	// Check whether we have an error condition
-	if([components count] == 3)
+	if([components count] == 2)
 	{
 		// --------------------
 		// FAILED <reason>
@@ -183,16 +215,10 @@ NSString *BSNetworkErrorReceivedNotificationName	= @"BS NetworkErrorReceived Not
 		// INTERVAL <n>
 		// --------------------
 		
-		if([firstComponent length] <= 7)
-		{
+		if([firstComponent hasPrefix:@"FAILED"])
 			[self notifyNetworkError];
-			return;
-		}
-		
-		if([[firstComponent substringToIndex:5] isEqualToString:@"FAILED"])
-			[self notifyNetworkError];
-		else if([[firstComponent substringToIndex:7] isEqualToString:@"BADUSER"])
-			[self notifyAuthenticationFailure];
+		else if([firstComponent hasPrefix:@"BADUSER"])
+			[self notifyUserAuthenticationFailure];
 		else
 			[self notifyNetworkError];
 		return;
@@ -232,14 +258,17 @@ NSString *BSNetworkErrorReceivedNotificationName	= @"BS NetworkErrorReceived Not
 
 - (void)handleSubmitResponse:(NSString *)aResponse
 {
-	// Split string and do a small check
-	NSArray *components = [aResponse componentsSeparatedByString:@"\n"];
-	if([components count] != 3)
+	// Split response
+	NSArray *components = [self componentsForResponse:aResponse];
+	
+	// Check
+	if([components count] != 2)
 	{
 		[self notifyNetworkError];
 		return;
 	}
 	
+	// Get first component
 	NSString *firstComponent = [components objectAtIndex:0];
 	
 	// Check whether we have an error condition
@@ -259,10 +288,10 @@ NSString *BSNetworkErrorReceivedNotificationName	= @"BS NetworkErrorReceived Not
 			return;
 		}
 		
-		if([[firstComponent substringToIndex:5] isEqualToString:@"FAILED"])
+		if([firstComponent hasPrefix:@"FAILED"])
 			[self notifyNetworkError];
-		else if([[firstComponent substringToIndex:7] isEqualToString:@"BADAUTH"])
-			[self notifyAuthenticationFailure];
+		else if([firstComponent hasPrefix:@"BADAUTH"])
+			[self notifyPasswordAuthenticationFailure];
 		else
 			[self notifyNetworkError];
 		return;
